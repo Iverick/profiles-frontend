@@ -2,6 +2,7 @@ import React from 'react'
 
 function Post() {
   return (
+    <div className="col-3">
     <div className="card mb-4 rounded-3 shadow-sm mx-3">
       <div className="card-body">
         <ul className="list-unstyled mt-1 mb-2 text-center">
@@ -11,16 +12,7 @@ function Post() {
         </ul>
       </div>   
     </div>
-
-    /*
-    <div class="col d-flex align-items-center border rounded mx-4 py-4">
-      <div class="text-center">
-        <p>Username</p>
-        <p>user@email.com</p>
-        <p>10 profiles</p>
-      </div>
     </div>
-    */
   );
 }
 
