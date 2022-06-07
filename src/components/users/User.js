@@ -5,14 +5,15 @@ import ProfileCard from '../profiles/ProfileCard'
 
 const API_URL = "http://localhost:3000/api/v1/"
 
-function getUserAPIData(userId) {
+const getUserAPIData = async(userId) => {
     // Connecting to API /users/:id endpoint after the element was mounted
-  return axios.get(API_URL + "users/" + userId).then((res) => res.data)
+  return await axios.get(API_URL + "users/" + userId).then((res) => res.data)
 }
 
 export default function User() {
   const userId = useParams()
   const [user, setUser] = useState([])
+  const [profiles, setProfiles] = useState([])
 
   useEffect(() => {
     let mounted = true;
@@ -20,26 +21,34 @@ export default function User() {
     getUserAPIData(userId.userId).then((data) => {
       if (mounted) {
         setUser(data)
+        setProfiles(data.profiles)
       }
     })
     return () => (mounted = false)
   }, [userId])
 
+  // Sets userStatus to admin to user based on state data
+  let userStatus
+  if (user.admin) {
+    userStatus = 'admin'
+  } else {
+    userStatus = 'user'
+  }
+
   return (
     <div>
+      <div className="text-center">
+        <p className="fs-3">{ user.username }</p>
+        <p className="fs-4">{ user.email }</p>
+        <p>{ userStatus }</p>
+      </div>
+
       <h2 className="pb-2">Profiles:</h2>
 
       <div className="row gx-5 py-3">
-        {/*  
-        { user.profiles.map((profile, i) => {
+        { profiles.map((profile, i) => {
           return <ProfileCard profile={profile} key={i} />
         })}
-        */}
-        <ProfileCard />
-        <ProfileCard />
-        <ProfileCard />
-        <ProfileCard />
-
       </div>
     </div>
   );
