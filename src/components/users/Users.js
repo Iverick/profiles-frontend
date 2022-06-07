@@ -1,6 +1,6 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
-import React from 'react'
+import { React, useEffect, useState } from 'react'
+// import { Link } from 'react-router-dom'
 import UserCard from './UserCard'
 
 const API_URL = "http://localhost:3000/api/v1/"
@@ -15,9 +15,9 @@ export default function Users() {
   useEffect(() => {
     // Connecting to API /users endpoint after the element was mounted
     let mounted = true;
-    getUsersAPIData().then((items) => {
+    getUsersAPIData().then((data) => {
       if (mounted) {
-        setUsers(items)
+        setUsers(data)
       }
     })
     return () => (mounted = false)

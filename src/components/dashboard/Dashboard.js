@@ -29,7 +29,6 @@ export default function Dashboard() {
     <div>
       <h2 className="pb-2">Dashboard:</h2>
       <div className="row g-2 py-2">
-        <div className="mb-4 rounded-3 shadow-sm mx-3"></div>
         <div className="col-2">
           <div className="card mb-4 rounded-3 shadow-sm mx-3">
             <div className="card-body text-center my-4">

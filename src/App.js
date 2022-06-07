@@ -5,16 +5,16 @@ import Navbar from './components/Navbar'
 
 export default function App() {
   return (
-    <div className="pt-3 px-5 bg-light bg-gradient">
-      <header>
-        <Navbar />
-      </header>
+    <BrowserRouter>
+      <div className="pt-3 px-5 bg-light bg-gradient">
+        <header>
+          <Navbar />
+        </header>
 
-      <div className="main container px-4 py-5">
-        <BrowserRouter>
+        <div className="main container px-4 py-5">
           <MainRouter />
-        </BrowserRouter>
+        </div>
       </div>
-    </div>
+    </BrowserRouter>
   );
 }

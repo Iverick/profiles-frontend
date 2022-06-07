@@ -1,6 +1,6 @@
 import React from 'react'
 
-function User(props) {
+export default function UserCard(props) {
   let profiles_count = props.user.profiles_count || 0
 
   return (
@@ -17,5 +17,3 @@ function User(props) {
     </div>
   );
 }
-
-export default User
