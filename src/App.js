@@ -1,7 +1,7 @@
+import { BrowserRouter } from 'react-router-dom'
 import './App.css'
+import MainRouter from './MainRouter'
 import Navbar from './components/Navbar'
-import Dashboard from './components/dashboard/Dashboard'
-import Users from './components/users/Users'
 
 export default function App() {
   return (
@@ -11,7 +11,9 @@ export default function App() {
       </header>
 
       <div className="main container px-4 py-5">
-        <Dashboard />
+        <BrowserRouter>
+          <MainRouter />
+        </BrowserRouter>
       </div>
     </div>
   );
