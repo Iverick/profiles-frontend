@@ -16,10 +16,6 @@ export default function Dashboard() {
     getDashboardAPIData().then((items) => {
       if (mounted) {
         setdashboardData(items)
-
-        /* ToDo  remove console log after finishing component! */
-        console.log(items)
-        
       }
     })
     return () => (mounted = false)
@@ -49,10 +45,7 @@ export default function Dashboard() {
           <div className="card mb-4 rounded-3 shadow-sm mx-3">
             <div className="card-body text-center my-4">
             <p className="fs-4">Profiles over 18 years old:</p>
-
-              { /* ToDo  return a proper value for profiles_older_18 here!!!! */ }
-              <h3>{ dashboardData.profiles_count || 0 }</h3>
-
+              <h3>{ dashboardData.profiles_older_18 || 0 }</h3>
             </div>
           </div>
         </div>
