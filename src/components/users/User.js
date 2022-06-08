@@ -40,7 +40,11 @@ export default function User() {
       <div className="text-center">
         <p className="fs-3">{ user.username }</p>
         <p className="fs-4">{ user.email }</p>
-        <p>{ userStatus }</p>
+        <p className="fs-5">{ userStatus }</p>
+        <div>
+          <i class="fa-solid fa-pencil"></i>
+          <i class="fa-solid fa-trash-can"></i>
+        </div>
       </div>
 
       <h2 className="pb-2">Profiles:</h2>

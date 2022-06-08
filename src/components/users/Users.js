@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { React, useEffect, useState } from 'react'
-// import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import UserCard from './UserCard'
 
 const API_URL = "http://localhost:3000/api/v1/"
@@ -29,7 +29,7 @@ export default function Users() {
 
       <div className="row g-2 py-3 row-cols-4">
         { users.map((user) => {
-          return <UserCard user={user} key={user.id} />
+          return <UserCard user={user}  key={user.id} />
         })}
       </div>  
     </div> 

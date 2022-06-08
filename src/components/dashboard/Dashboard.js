@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react'
 
 const API_URL = "http://localhost:3000/api/v1/"
 
-function getDashboardAPIData() {
-  return axios.get(API_URL + "dashboard/index").then((res) => res.data)
+const getDashboardAPIData = async() => {
+  return await axios.get(API_URL + "dashboard/index").then((res) => res.data)
 }
 
 export default function Dashboard() {
