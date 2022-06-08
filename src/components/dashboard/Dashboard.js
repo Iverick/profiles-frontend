@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-
-const API_URL = "http://localhost:3000/api/v1/"
+import { API_URL } from '../../constants/app-constants'
 
 const getDashboardAPIData = async() => {
   return await axios.get(API_URL + "dashboard/index").then((res) => res.data)
@@ -12,13 +11,9 @@ export default function Dashboard() {
 
   useEffect(() => {
     // Connecting to API /dashboard/index endpoint after the element was mounted
-    let mounted = true;
     getDashboardAPIData().then((items) => {
-      if (mounted) {
-        setdashboardData(items)
-      }
+      setdashboardData(items)
     })
-    return () => (mounted = false)
   }, [])
 
   return (
@@ -45,7 +40,7 @@ export default function Dashboard() {
           <div className="card mb-4 rounded-3 shadow-sm mx-3">
             <div className="card-body text-center my-4">
             <p className="fs-4">Profiles over 18 years old:</p>
-              <h3>{ dashboardData.profiles_older_18 || 0 }</h3>
+              <h3>{ dashboardData.adult_profiles_count || 0 }</h3>
             </div>
           </div>
         </div>

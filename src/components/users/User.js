@@ -2,8 +2,7 @@ import axios from 'axios'
 import { React, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ProfileCard from '../profiles/ProfileCard'
-
-const API_URL = "http://localhost:3000/api/v1/"
+import { API_URL } from '../../constants/app-constants'
 
 const getUserAPIData = async(userId) => {
     // Connecting to API /users/:id endpoint after the element was mounted
@@ -16,15 +15,10 @@ export default function User() {
   const [profiles, setProfiles] = useState([])
 
   useEffect(() => {
-    let mounted = true;
-
     getUserAPIData(userId.userId).then((data) => {
-      if (mounted) {
-        setUser(data)
-        setProfiles(data.profiles)
-      }
+      setUser(data)
+      setProfiles(data.profiles)
     })
-    return () => (mounted = false)
   }, [userId])
 
   // Sets userStatus to admin to user based on state data

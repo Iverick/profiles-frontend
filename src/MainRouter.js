@@ -10,8 +10,8 @@ const MainRouter = () => {
     <div>
       <Routes>
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="users" element= {<Users />} />
-        <Route path="users/:userId" element={<User />} />
+        <Route path="/users" element= {<Users />} />
+        <Route path="/users/:userId" element={<User />} />
         <Route>404 not found!</Route>
       </Routes>
     </div>

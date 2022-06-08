@@ -1,12 +1,10 @@
 import axios from 'axios'
 import { React, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
 import UserCard from './UserCard'
+import { API_URL } from '../../constants/app-constants'
 
-const API_URL = "http://localhost:3000/api/v1/"
-
-function getUsersAPIData() {
-  return axios.get(API_URL + "users").then((res) => res.data)
+const getUsersAPIData = async() => {
+  return await axios.get(API_URL + "users").then((res) => res.data)
 }
 
 export default function Users() {
@@ -14,13 +12,9 @@ export default function Users() {
 
   useEffect(() => {
     // Connecting to API /users endpoint after the element was mounted
-    let mounted = true;
     getUsersAPIData().then((data) => {
-      if (mounted) {
-        setUsers(data)
-      }
+      setUsers(data)
     })
-    return () => (mounted = false)
   }, [])
 
   return (
