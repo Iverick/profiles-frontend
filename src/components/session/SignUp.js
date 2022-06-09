@@ -42,11 +42,11 @@ export default function SignUp() {
     } else {
       // Make a call to API endpoint with the form data using imported function and redirect
       // to SignIn page on success
-      register(username, email, password, admin).then((data) => {
-        if (data.error) {
-          setError(true)
-        } else {
+      register(username, email, password, admin).then((res) => {
+        if (res.status === 200) {
           return navigate("/signin")
+        } else {
+          setError(true)
         }
       })
     }

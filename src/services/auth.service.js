@@ -9,9 +9,10 @@ const register = async (username, email, password, admin) => {
       headers: { "Content-Type": "application/json" },
       user: { username, email, password, admin },
     })
-    return await res.status
+    return await res
   } catch (err) {
     console.log(err)
+    return await err
   }
 }
 
