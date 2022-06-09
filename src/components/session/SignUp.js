@@ -40,6 +40,8 @@ export default function SignUp() {
     if (username === '' || email === '' || password === '') {
       setError(true)
     } else {
+      // Make a call to API endpoint with the form data using imported function and redirect
+      // to SignIn page on success
       register(username, email, password, admin).then((data) => {
         if (data.error) {
           setError(true)
@@ -55,9 +57,14 @@ export default function SignUp() {
       <div className="col-4 offset-4">
       <main className="form-signin w-100 m-auto">
         <form>
-          <h1 className="h3 mb-3 fw-normal">Create your account</h1>
+          <h1 className="h2 mb-3 fw-normal">Create your account</h1>
 
-          <div className="form-floating">
+          <div className="text-danger"
+               style={{ display: error ? '' : 'none'}}>
+            There were errors while registering your account
+          </div>
+
+          <div className="form-floating my-4">
             <input 
               type="text" 
               className="form-control" 
@@ -67,7 +74,7 @@ export default function SignUp() {
             <label htmlFor="usernameField">Username</label>
           </div>
 
-          <div className="form-floating">
+          <div className="form-floating my-4">
             <input 
               type="email" 
               className="form-control" 
@@ -77,7 +84,7 @@ export default function SignUp() {
             <label htmlFor="emailField">Email address</label>
           </div>
 
-          <div className="form-floating">
+          <div className="form-floating my-4">
             <input 
               type="password" 
               className="form-control" 
@@ -87,16 +94,13 @@ export default function SignUp() {
             <label htmlFor="passwordField">Password</label>
           </div>
 
-          <div className="checkbox mb-3">
+          <div className="checkbox my-4">
             <label>
               <input type="checkbox" checked={ admin } onChange={ handleAdmin } /> Admin
             </label>
           </div>
 
-          {/* remove the following line after the component is finished */}
-          { admin ? 'you are an admin' : 'not admin '}
-
-          <button onClick={handleSubmit} className="w-100 btn btn-lg btn-primary" type="submit">
+          <button onClick={handleSubmit} className="w-100 btn btn-lg btn-outline-secondary border-0" type="submit">
             Sign in
           </button>
         </form>

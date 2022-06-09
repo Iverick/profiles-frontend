@@ -10,12 +10,13 @@ const MainRouter = () => {
   return (
     <div>
       <Routes>
+        <Route path="*">404 not found!</Route>
         <Route path="/signup" element={<SignUp />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/users" element= {<Users />} />
         <Route path="/users/:userId" element={<User />} />
-        <Route>404 not found!</Route>
+        
       </Routes>
     </div>
   )
