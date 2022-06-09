@@ -67,7 +67,7 @@ export default function SignUp() {
           <div className="form-floating my-4">
             <input 
               type="text" 
-              className="form-control" 
+              className="form-control border-0" 
               id="usernameField" 
               value={ username }
               onChange={ handleUsername } />
@@ -77,7 +77,7 @@ export default function SignUp() {
           <div className="form-floating my-4">
             <input 
               type="email" 
-              className="form-control" 
+              className="form-control border-0" 
               id="emailField"
               value={ email }
               onChange={ handleEmail } />
@@ -87,7 +87,7 @@ export default function SignUp() {
           <div className="form-floating my-4">
             <input 
               type="password" 
-              className="form-control" 
+              className="form-control border-0" 
               id="passwordField" 
               value={ password }
               onChange={ handlePassword } />
@@ -100,8 +100,8 @@ export default function SignUp() {
             </label>
           </div>
 
-          <button onClick={handleSubmit} className="w-100 btn btn-lg btn-outline-secondary border-0" type="submit">
-            Sign in
+          <button onClick={ handleSubmit } className="w-100 btn btn-lg btn-outline-secondary border-0" type="submit">
+            Sign Up
           </button>
         </form>
       </main>

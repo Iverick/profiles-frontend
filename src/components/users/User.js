@@ -4,9 +4,17 @@ import { useParams } from 'react-router-dom'
 import ProfileCard from '../profiles/ProfileCard'
 import { API_URL } from '../../constants/app-constants'
 
+// Connecting to API /users/:id endpoint after the element was mounted
 const getUserAPIData = async(userId) => {
-    // Connecting to API /users/:id endpoint after the element was mounted
   return await axios.get(API_URL + "users/" + userId).then((res) => res.data)
+}
+
+const handleEditClick = () => {
+  console.log("edit icon was clicked!")
+}
+
+const handleDeleteClick = () => {
+  console.log("delete icon was clicked!")
 }
 
 export default function User() {
@@ -36,8 +44,8 @@ export default function User() {
         <p className="fs-4">{ user.email }</p>
         <p className="fs-5">{ userStatus }</p>
         <div>
-          <i class="fa-solid fa-pencil"></i>
-          <i class="fa-solid fa-trash-can"></i>
+          <i className="fa-solid fa-pencil" onClick={ handleEditClick }></i>
+          <i className="fa-solid fa-trash-can" onClick={ handleDeleteClick }></i>
         </div>
       </div>
 
