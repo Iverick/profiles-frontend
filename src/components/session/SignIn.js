@@ -26,9 +26,11 @@ export default function SignIn() {
       setError(true)
     } else {
       login(email, password).then((data) => {
-        // console.log(res)
-        console.log(data)
-        // console.log(res.data.user)
+
+
+        // console.log(data)
+        
+        
       })
     }
   }
