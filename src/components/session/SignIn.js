@@ -1,4 +1,5 @@
 import { React, useState } from 'react'
+import { login } from '../../services/auth.service'
 
 export default function SignIn() {
   // States for form fields
@@ -24,7 +25,11 @@ export default function SignIn() {
     if (email === '' || password === '') {
       setError(true)
     } else {
-      console.log("Email: " + email + ", Password: " + password)
+      login(email, password).then((data) => {
+        // console.log(res)
+        console.log(data)
+        // console.log(res.data.user)
+      })
     }
   }
 

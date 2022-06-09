@@ -16,4 +16,26 @@ const register = async (username, email, password, admin) => {
   }
 }
 
-export { register }
+// Makes a POST request to /users/sign_in API endpoint to sign in a user with the provided credentials
+// and return the auth token and the signed in user data in response
+const login = async (email, password) => {
+  try {
+    let res = await axios
+      .post(AUTH_URL + "sign_in", {
+        headers: { "Content-Type": "application/json" },
+        user: { email, password }
+      })
+      .then((res) => {
+        if (res.data.accessToken) {
+          localStorage.setItem("user", JSON.stringify(res.data));
+        }
+        return res.data
+      })
+    return res
+  } catch (err) {
+    console.log(err)
+    return await err
+  }
+}
+
+export { register, login }
