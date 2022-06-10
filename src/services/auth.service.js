@@ -22,15 +22,19 @@ const login = async (email, password) => {
   try {
     let res = await axios
       .post(AUTH_URL + "sign_in", {
-        headers: { "Content-Type": "application/json" },
         user: { email, password }
       })
       .then((res) => {
         console.log(res)
+        const token = res.data.headers.authorization
+
         // following line doesn't work
-        if (res.data.user.accessToken) {
-          localStorage.setItem("user", JSON.stringify(res.data.user));
+        if (token) {
+          localStorage.setItem("token", token)
         }
+
+
+
         return res.data
       })
     return res

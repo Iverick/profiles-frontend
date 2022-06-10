@@ -11,4 +11,16 @@ const getUserAPIData = async(userId) => {
   return await axios.get(API_URL + "users/" + userId).then((res) => res.data)
 }
 
-export { getUsersAPIData, getUserAPIData }
+const updateUserAPIData = async(userId, updatedData) => {
+  try {
+    let res = await axios.put(API_URL + "users/" + userId, updatedData, {
+      headers: { "Content-Type": "application/json" },
+    })
+    return await res
+  } catch(err) {
+    console.log(err)
+    return await err
+  }
+}
+
+export { getUsersAPIData, getUserAPIData, updateUserAPIData }
