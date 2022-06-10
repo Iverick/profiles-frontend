@@ -98,34 +98,35 @@ export default function EditUserModal(props) {
               </div>
               
               {/* radio buttons */}
-              <div className="list-group mx-0 w-auto">
-                <label className="list-group-item d-flex gap-2">
-                  <input 
-                    className="form-check-input flex-shrink-0" 
-                    type="radio" 
-                    name="user-btn" 
-                    id="listGroupRadios1" 
-                    value="" 
-                    checked={ isAdmin(false) }
-                    onChange={ handleAdminClick } />
-                  <span className="text-sm text-muted">
-                    User
-                  </span>
-                </label>
-                <label className="list-group-item d-flex gap-2">
-                  <input 
-                    className="form-check-input flex-shrink-0" 
-                    type="radio" 
-                    name="admin-btn" 
-                    id="listGroupRadios2" 
-                    value="1"
-                    checked={ isAdmin(true) } 
-                    onChange={ handleAdminClick } />
-                  <span className="text-sm text-muted">
-                    Admin
-                  </span>
-                </label>
-              </div> 
+              <div class="row justify-content-between">
+                <div class="col-4">
+                  <div class="form-check form-check-inline ms-5">
+                    <label class="form-check-label" for="user-radio">User</label>
+                    <input 
+                      className="form-check-input flex-shrink-0" 
+                      type="radio" 
+                      name="user-btn" 
+                      id="user-radio" 
+                      value="" 
+                      checked={ isAdmin(false) }
+                      onChange={ handleAdminClick } />
+                  </div>
+                </div>
+
+                <div class="col-4">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="admin-radio">Admin</label>
+                    <input 
+                      className="form-check-input flex-shrink-0" 
+                      type="radio" 
+                      name="admin-btn" 
+                      id="admin-radio" 
+                      value="1"
+                      checked={ isAdmin(true) } 
+                      onChange={ handleAdminClick } />
+                  </div>
+                </div>
+              </div>
               
               {/* submit/reject buttons */}
               <div className="text-center mt-4">

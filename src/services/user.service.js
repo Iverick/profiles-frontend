@@ -11,6 +11,7 @@ const getUserAPIData = async(userId) => {
   return await axios.get(API_URL + "users/" + userId).then((res) => res.data)
 }
 
+// Connecting to API /users/:id PUT endpoint to update details about a specific user
 const updateUserAPIData = async(userId, updatedData) => {
   try {
     let res = await axios.put(API_URL + "users/" + userId, updatedData, {
