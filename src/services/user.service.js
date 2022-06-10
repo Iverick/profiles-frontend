@@ -17,7 +17,7 @@ const updateUserAPIData = async(userId, updatedData) => {
     let res = await axios.put(API_URL + "users/" + userId, updatedData, {
       headers: { "Content-Type": "application/json" },
     })
-    return await res
+    return res
   } catch(err) {
     console.log(err)
     return await err

@@ -16,10 +16,12 @@ export default function User() {
     })
   }, [userId])
 
+  // TODO: Remove this method after finishing the component!!!!!!!!
   const handleEditClick = () => {
     console.log("edit icon was clicked!")
   }
 
+  // TODO: Remove this method after finishing the component!!!!!!!!
   const handleDeleteClick = () => {
     console.log("delete icon was clicked!")
   }
