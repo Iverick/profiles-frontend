@@ -43,16 +43,16 @@ export default function ProfileCard(props) {
         
         {/* Footer buttons */}
         <div className="d-flex">
-          <div className="text-center border flex-fill">
-            <button className="btn btn-sm btn-white w-100 p-2">
+          <div className="text-center flex-fill btn-outline-primary rounded-0 rounded-start border-0">
+            <button className="btn btn-sm w-100 p-2">
               <span className="text-muted me-2">edit</span>
-              <i className="fa-solid fa-pencil"></i>
+              <i className="fa-solid fa-pencil text-muted"></i>
             </button>
           </div>
-          <div className="text-center border flex-fill">
-            <button className="btn btn-sm btn-white w-100 p-2">
+          <div className="text-center flex-fill btn-outline-danger rounded-0 rounded-end border-0">
+            <button className="btn btn-sm w-100 p-2">
               <span className="text-muted me-2">delete</span>
-              <i className="fa-solid fa-trash-can"></i>
+              <i className="fa-solid fa-trash-can text-muted"></i>
             </button>
           </div>
         </div>
