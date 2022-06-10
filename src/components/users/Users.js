@@ -1,11 +1,6 @@
-import axios from 'axios'
 import { React, useEffect, useState } from 'react'
 import UserCard from './UserCard'
-import { API_URL } from '../../constants/app-constants'
-
-const getUsersAPIData = async() => {
-  return await axios.get(API_URL + "users").then((res) => res.data)
-}
+import { getUsersAPIData } from '../../services/user.service'
 
 export default function Users() {
   const [users, setUsers] = useState([])

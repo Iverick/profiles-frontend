@@ -1,13 +1,8 @@
-import axios from 'axios'
 import { React, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ProfileCard from '../profiles/ProfileCard'
-import { API_URL } from '../../constants/app-constants'
-
-const getUserAPIData = async(userId) => {
-    // Connecting to API /users/:id endpoint after the element was mounted
-  return await axios.get(API_URL + "users/" + userId).then((res) => res.data)
-}
+import EditUserModal from './EditUserModal'
+import { getUserAPIData } from '../../services/user.service'
 
 export default function User() {
   const userId = useParams()
@@ -21,12 +16,22 @@ export default function User() {
     })
   }, [userId])
 
+  const handleEditClick = () => {
+    console.log("edit icon was clicked!")
+  }
+
+  const handleDeleteClick = () => {
+    console.log("delete icon was clicked!")
+  }
+
   // Sets userStatus to admin to user based on state data
-  let userStatus
-  if (user.admin) {
-    userStatus = 'admin'
-  } else {
-    userStatus = 'user'
+  const userStatus = () => {
+    let userStatus
+    if (user.admin) {
+      return userStatus = 'admin'
+    } else {
+      return userStatus = 'user'
+    }
   }
 
   return (
@@ -34,10 +39,18 @@ export default function User() {
       <div className="text-center">
         <p className="fs-3">{ user.username }</p>
         <p className="fs-4">{ user.email }</p>
-        <p className="fs-5">{ userStatus }</p>
-        <div>
-          <i class="fa-solid fa-pencil"></i>
-          <i class="fa-solid fa-trash-can"></i>
+        <p className="fs-5">{ userStatus() }</p>
+        <div className="row">
+          <div className="col-6 text-end">
+            <button type="button" className="btn btn-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+              <i className="fa-solid fa-pencil" onClick={ handleEditClick }></i>
+            </button>
+          </div>
+          <div className="col-6 text-start">
+            <button type="button" className="btn btn-white">
+              <i className="fa-solid fa-trash-can" onClick={ handleDeleteClick }></i>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -47,6 +60,8 @@ export default function User() {
         { profiles.map((profile, i) => {
           return <ProfileCard profile={profile} key={i} />
         })}
+
+        <EditUserModal user={user} />
       </div>
     </div>
   );
