@@ -1,12 +1,11 @@
 /*
-  Checks Local Storage for user item. If there is a logged in user with accessToken (JWT), 
-  return HTTP Authorization header. 
-  Otherwise, return an empty object
+  Helper method returns Authorization header if it persists is a local browser storage
  */
 export default function authHeader() {
   const user = JSON.parse(localStorage.getItem('user'))
-  if (user && user.accessToken) {
-    return { Authorization: 'Bearer ' + user.accessToken }
+  const token = JSON.parse(localStorage.getItem('token'))
+  if (user && token) {
+    return { Authorization: 'Bearer ' + token }
   } else {
     return {}
   }

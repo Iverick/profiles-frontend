@@ -23,7 +23,7 @@ export default function EditUserModal(props) {
     }
   }, [props])
 
-  // Checks the proper radio button based on the admin state
+  // Sets checked to the proper radio button based on the admin state
   const isAdmin = (value) => admin === value
 
   // Toggling the admin status change
@@ -98,10 +98,12 @@ export default function EditUserModal(props) {
               </div>
               
               {/* radio buttons */}
-              <div class="row justify-content-between">
-                <div class="col-4">
-                  <div class="form-check form-check-inline ms-5">
-                    <label class="form-check-label" for="user-radio">User</label>
+              <div className="row justify-content-between">
+                <div className="col-4">
+                  <div className="form-check form-check-inline ms-5">
+                    <label className="form-check-label" htmlFor="user-radio">
+                      <span className="text-secondary">User</span>
+                    </label>
                     <input 
                       className="form-check-input flex-shrink-0" 
                       type="radio" 
@@ -113,9 +115,11 @@ export default function EditUserModal(props) {
                   </div>
                 </div>
 
-                <div class="col-4">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="admin-radio">Admin</label>
+                <div className="col-4">
+                  <div className="form-check form-check-inline">
+                    <label className="form-check-label" htmlFor="admin-radio">
+                      <span className="text-secondary">Admin</span>
+                    </label>
                     <input 
                       className="form-check-input flex-shrink-0" 
                       type="radio" 

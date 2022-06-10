@@ -17,27 +17,22 @@ const register = async (username, email, password, admin) => {
 }
 
 // Makes a POST request to /users/sign_in API endpoint to sign in a user with the provided credentials
-// and return the auth token and the signed in user data in response
+// and return the auth token and the signed in user data in response.
+// Stores provided response data in local storage later.
 const login = async (email, password) => {
   try {
-    let res = await axios
+    return await axios
       .post(AUTH_URL + "sign_in", {
         user: { email, password }
       })
       .then((res) => {
-        console.log(res)
-        const token = res.data.headers.authorization
-
-        // following line doesn't work
+        const token = res.headers.authorization
         if (token) {
           localStorage.setItem("token", token)
+          localStorage.setItem("user", JSON.stringify(res.data.user))
         }
-
-
-
-        return res.data
+        return res
       })
-    return res
   } catch (err) {
     console.log(err)
     return await err
