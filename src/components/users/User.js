@@ -46,7 +46,7 @@ export default function User() {
         <p className="fs-5">{ userStatus() }</p>
         <div className="row">
           <div className="col-6 text-end">
-            <button type="button" className="btn btn-white" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <button type="button" className="btn btn-white" data-bs-toggle="modal" data-bs-target="#userBackdrop">
               <i className="fa-solid fa-pencil" onClick={ handleEditClick }></i>
             </button>
           </div>
@@ -75,7 +75,7 @@ export default function User() {
       {/* TODO: Add user props to this modal. Careful here - user ID should be passed! */}
       <CreateEditProfileModal />
 
-      
+
     </div>
   );
 }
