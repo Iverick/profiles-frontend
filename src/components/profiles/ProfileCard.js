@@ -44,7 +44,7 @@ export default function ProfileCard(props) {
         {/* Footer buttons */}
         <div className="d-flex">
           <div className="text-center flex-fill btn-outline-primary rounded-0 rounded-start border-0">
-            <button className="btn btn-sm w-100 p-2">
+            <button type="button" className="btn btn-sm w-100 p-2" data-bs-toggle="modal" data-bs-target="#profileBackdrop">
               <span className="text-black-50 me-2">edit</span>
               <i className="fa-solid fa-pencil text-black-50"></i>
             </button>

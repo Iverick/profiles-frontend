@@ -1,6 +1,8 @@
 import { React, useEffect, useState } from 'react'
 import { getProfilesAPIData } from'../../services/profile.service'
-import ProfileCard from '../profiles/ProfileCard'
+import ProfileCard from './ProfileCard'
+import CreateEditProfileModal from './CreateEditProfileModal'
+import AddProfileIconCard from './AddProfileIconCard'
 
 export default function Profiles() {
   const [profiles, setProfiles] = useState([])
@@ -20,7 +22,15 @@ export default function Profiles() {
         { profiles.map((profile, i) => {
           return <ProfileCard profile={profile} key={i} />
         })}
+
+        <AddProfileIconCard />
       </div>
+
+
+      {/* TODO: Add user props to this modal */}
+      <CreateEditProfileModal />
+
+      
     </div>
   )
 }

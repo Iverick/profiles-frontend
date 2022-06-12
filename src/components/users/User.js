@@ -3,6 +3,8 @@ import { useParams } from 'react-router-dom'
 import ProfileCard from '../profiles/ProfileCard'
 import EditUserModal from './EditUserModal'
 import { getUserAPIData } from '../../services/user.service'
+import AddProfileIconCard from '../profiles/AddProfileIconCard'
+import CreateEditProfileModal from '../profiles/CreateEditProfileModal'
 
 export default function User() {
   const userId = useParams()
@@ -63,8 +65,17 @@ export default function User() {
           return <ProfileCard profile={profile} key={i} />
         })}
 
-        <EditUserModal user={user} />
+        <AddProfileIconCard />
       </div>
+
+      <EditUserModal user={user} />
+
+
+
+      {/* TODO: Add user props to this modal. Careful here - user ID should be passed! */}
+      <CreateEditProfileModal />
+
+      
     </div>
   );
 }
