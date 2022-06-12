@@ -45,14 +45,14 @@ export default function ProfileCard(props) {
         <div className="d-flex">
           <div className="text-center flex-fill btn-outline-primary rounded-0 rounded-start border-0">
             <button className="btn btn-sm w-100 p-2">
-              <span className="text-muted me-2">edit</span>
-              <i className="fa-solid fa-pencil text-muted"></i>
+              <span className="text-black-50 me-2">edit</span>
+              <i className="fa-solid fa-pencil text-black-50"></i>
             </button>
           </div>
           <div className="text-center flex-fill btn-outline-danger rounded-0 rounded-end border-0">
             <button className="btn btn-sm w-100 p-2">
-              <span className="text-muted me-2">delete</span>
-              <i className="fa-solid fa-trash-can text-muted"></i>
+              <span className="text-black-50 me-2">delete</span>
+              <i className="fa-solid fa-trash-can text-black-50"></i>
             </button>
           </div>
         </div>
