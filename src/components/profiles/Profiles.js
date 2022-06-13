@@ -1,7 +1,7 @@
 import { React, useEffect, useState } from 'react'
 import { getProfilesAPIData } from'../../services/profile.service'
 import ProfileCard from './ProfileCard'
-import CreateEditProfileModal from './CreateEditProfileModal'
+import CreateProfileModal from './CreateProfileModal'
 import AddProfileIconCard from './AddProfileIconCard'
 
 export default function Profiles() {
@@ -27,10 +27,10 @@ export default function Profiles() {
       </div>
 
 
-      {/* TODO: Add user props to this modal */}
-      <CreateEditProfileModal />
+      {/* TODO: Add user props to this modal. There should be no props passed I believe */}
+      <CreateProfileModal />
 
-      
+
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import EditProfileModal from './EditProfileModal'
 
 // Changes input date format
 const changeInputBirthdayFormat = (date) => {
@@ -10,22 +11,12 @@ const changeInputBirthdayFormat = (date) => {
 export default function ProfileCard(props) {
 
   // States for form fields
-  const [userId, setUserId] = useState('')
-  const [profileId, setProfileId] = useState('')
-  const [profileName, setProfileName] = useState('')
-  const [profileGender, setProfileGender] = useState('')
-  const [profileBirthday, setProfileBirthday] = useState('')
-  const [profileCity, setProfileCity] = useState('')
+  const [profile, setProfile] = useState('')
 
   useEffect(() => {
     // Sets initial states based on props
-    setUserId(props.profile.user_id)
-    setProfileId(props.profile.id)
-    setProfileName(props.profile.name)
-    setProfileGender(props.profile.gender)
-    setProfileBirthday(changeInputBirthdayFormat(props.profile.birthday))
-    setProfileCity(props.profile.city)
-  }, [])
+    setProfile(props.profile)
+  }, [props])
 
   return (
     <div className="col-3">
@@ -34,17 +25,17 @@ export default function ProfileCard(props) {
         {/* Card body */}
         <div className="card-body">
           <ul className="list-unstyled mt-1 mb-2 text-center">
-            <li className="pb-2 fs-4">{ profileName }</li>
-            <li className="py-2">{ profileGender }</li>
-            <li className="py-2">{ profileBirthday }</li>
-            <li className="pt-2">{ profileCity }</li>
+            <li className="pb-2 fs-4">{ profile.name }</li>
+            <li className="py-2">{ profile.gender }</li>
+            <li className="py-2">{ changeInputBirthdayFormat(props.profile.birthday) }</li>
+            <li className="pt-2">{ profile.city }</li>
           </ul>
         </div> 
         
         {/* Footer buttons */}
         <div className="d-flex">
           <div className="text-center flex-fill btn-outline-primary rounded-0 rounded-start border-0">
-            <button type="button" className="btn btn-sm w-100 p-2" data-bs-toggle="modal" data-bs-target="#profileBackdrop">
+            <button type="button" className="btn btn-sm w-100 p-2" data-bs-toggle="modal" data-bs-target="#edit-profile-backdrop">
               <span className="text-black-50 me-2">edit</span>
               <i className="fa-solid fa-pencil text-black-50"></i>
             </button>
@@ -56,8 +47,9 @@ export default function ProfileCard(props) {
             </button>
           </div>
         </div>
- 
       </div>
+
+      <EditProfileModal />
     </div>    
   )
 }

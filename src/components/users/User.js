@@ -4,7 +4,7 @@ import ProfileCard from '../profiles/ProfileCard'
 import EditUserModal from './EditUserModal'
 import { getUserAPIData } from '../../services/user.service'
 import AddProfileIconCard from '../profiles/AddProfileIconCard'
-import CreateEditProfileModal from '../profiles/CreateEditProfileModal'
+import CreateProfileModal from '../profiles/CreateProfileModal'
 
 export default function User() {
   const userId = useParams()
@@ -73,9 +73,7 @@ export default function User() {
 
 
       {/* TODO: Add user props to this modal. Careful here - user ID should be passed! */}
-      <CreateEditProfileModal />
-
-
+      <CreateProfileModal />
     </div>
   );
 }
