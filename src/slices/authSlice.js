@@ -44,10 +44,8 @@ export const logout = createAsyncThunk(
 )
 
 const initialState = user 
-//  ? { loggedIn: true, isAdmin: userIsAdmin(), user } 
-//  : { loggedIn: false, isAdmin: false, user: null }
- ? { loggedIn: true, user } 
- : { loggedIn: false, user: null }
+ ? { loggedIn: true, isAdmin: userIsAdmin(), user } 
+ : { loggedIn: false, isAdmin: false, user: null }
 
 const authSlice = createSlice({
   name: 'auth',
@@ -55,20 +53,25 @@ const authSlice = createSlice({
   extraReducers: {
     [register.fulfilled]: (state, action) => {
       state.loggedIn = false
+      state.isAdmin = false
     },
     [register.rejected]: (state, action) => {
       state.loggedIn = false
+      state.isAdmin = false
     },
     [login.fulfilled]: (state, action) => {
       state.loggedIn = true
+      state.isAdmin = action.payload.user.admin
       state.user = action.payload.user
     },
     [login.rejected]: (state, action) => {
       state.loggedIn = false
+      state.isAdmin = false
       state.user = null
     },
     [logout.fulfilled]: (state, action) => {
-      state.loggedIn = true
+      state.loggedIn = false
+      state.isAdmin = false
       state.user = null
     },
   }
