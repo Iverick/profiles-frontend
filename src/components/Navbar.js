@@ -1,7 +1,25 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useNavigate  } from 'react-router-dom'
+import { logout } from '../services/auth.service'
+import authHeader from '../services/auth-header'
 
 function Navbar() {
+
+  let navigate = useNavigate()
+
+  // Handles Logout button click
+  const handleLogout = (e) => {
+    e.preventDefault()
+
+    logout().then((res) => {
+      if (res.status === 200 ) {
+        return navigate("/signin")
+      }
+      console.log(JSON.stringify(res.data))
+    })
+  }
+
   return (
     <div className="d-flex flex-column flex-md-row align-items-center pb-3 mb-4 border-bottom">
       <a href="/" className="d-flex align-items-center text-dark text-decoration-none ms-3">
@@ -14,7 +32,9 @@ function Navbar() {
         <Link className="me-3 py-2 text-dark text-decoration-none" to="/">Dashboard</Link>
         <Link className="me-3 py-2 text-dark text-decoration-none" to="/users">Users</Link>
         <div>
-          <button type="button" className="btn ms-3 py-2 btn-outline-dark btn-sm text-decoration-none">Log out</button>
+          <button onClick={ handleLogout } type="button" className="btn ms-3 py-2 btn-outline-muted btn-sm text-decoration-none">
+            Log out
+          </button>
         </div>
       </nav>
     </div>

@@ -1,11 +1,14 @@
 /*
-  Helper method returns Authorization header if it persists is a local browser storage
+  Helper method adds Authorization token to the header if it persists is a local browser storage
  */
 export default function authHeader() {
   const user = JSON.parse(localStorage.getItem('user'))
-  const token = JSON.parse(localStorage.getItem('token'))
+  const token = localStorage.getItem('token')
   if (user && token) {
-    return { Authorization: 'Bearer ' + token }
+    return { 
+      "Authorization": token,
+      "Content-Type": "application/json"
+    }
   } else {
     return {}
   }

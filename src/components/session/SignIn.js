@@ -1,7 +1,10 @@
 import { React, useState } from 'react'
+import { useNavigate  } from 'react-router-dom'
 import { login } from '../../services/auth.service'
 
 export default function SignIn() {
+
+  let navigate = useNavigate()
   // States for form fields
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
@@ -25,11 +28,14 @@ export default function SignIn() {
     if (email === '' || password === '') {
       setError(true)
     } else {
-      login(email, password).then((data) => {
-        console.log(data)
-        // console.log(data)
-        
-        
+      // Makes a call to API endpoint with the form data to log in user and redirect
+      // to Dashboard page on success
+      login(email, password).then((res) => {
+        if (res.status === 200) {
+          return navigate("/")
+        } else {
+          setError(true)
+        }
       })
     }
   }
@@ -39,7 +45,7 @@ export default function SignIn() {
       <div className="col-4 offset-4">
       <main className="form-signin w-100 m-auto">
         <form>
-          <h1 className="h2 mb-3 fw-normal">Create your account</h1>
+          <h1 className="h2 mb-3 fw-normal">Sign In</h1>
 
           <div className="text-danger"
                style={{ display: error ? '' : 'none'}}>
