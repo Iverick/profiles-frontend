@@ -1,10 +1,12 @@
 import { React, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate  } from 'react-router-dom'
-import { register } from '../../services/auth.service'
+import { register } from '../../slices/authSlice'
 
 export default function SignUp() {
 
   let navigate = useNavigate()
+  const dispatch = useDispatch()
   // States for form fields
   const [username, setUsername] = useState("")
   const [email, setEmail] = useState("")
@@ -40,15 +42,16 @@ export default function SignUp() {
     if (username === '' || email === '' || password === '') {
       setError(true)
     } else {
-      // Make a call to API endpoint with the form data using imported function and redirect
+      // Make a call to API endpoint with the form data using authSlice function and redirect
       // to SignIn page on success
-      register(username, email, password, admin).then((res) => {
-        if (res.status === 200) {
+      dispatch(register({ username, email, password, admin }))
+        .unwrap()
+        .then(() => {
           return navigate("/signin")
-        } else {
+        })
+        .catch(() => {
           setError(true)
-        }
-      })
+        })
     }
   }
 

@@ -1,23 +1,22 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { useNavigate  } from 'react-router-dom'
-import { logout } from '../services/auth.service'
-import authHeader from '../services/auth-header'
+import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { logout } from '../slices/authSlice'
 
 function Navbar() {
 
   let navigate = useNavigate()
+  const dispatch = useDispatch()
 
   // Handles Logout button click
   const handleLogout = (e) => {
     e.preventDefault()
 
-    logout().then((res) => {
-      if (res.status === 200 ) {
+    dispatch(logout())
+      .unwrap()
+      .then(() => {
         return navigate("/signin")
-      }
-      console.log(JSON.stringify(res.data))
-    })
+      })
   }
 
   return (
