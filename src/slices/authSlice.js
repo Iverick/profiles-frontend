@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import authSerive from '../services/auth.service'
 
+// Parces localStorage to see if there's a user already logged in
 const user = JSON.parse(localStorage.getItem("user"))
 
 // Checks whether user.admin state is true or false
@@ -10,6 +11,11 @@ const userIsAdmin = () => {
   return user.admin
 }
 
+const initialState = user 
+ ? { loggedIn: true, isAdmin: userIsAdmin(), user } 
+ : { loggedIn: false, isAdmin: false, user: null }
+
+// Resolves a call to register API endpoint using authSerive
 export const register = createAsyncThunk(
   "auth/register",
   async ({ username, email, password, admin }, thunkAPI) => {
@@ -23,6 +29,7 @@ export const register = createAsyncThunk(
   }
 )
 
+// Resolves a call to login API endpoint using authSerive
 export const login = createAsyncThunk(
   "auth/login",
   async ({ email, password }, thunkAPI) => {
@@ -36,16 +43,13 @@ export const login = createAsyncThunk(
   }
 )
 
+// Resolves a call to logout API endpoint using authSerive
 export const logout = createAsyncThunk(
   "auth/logout",
   async() => { 
     await authSerive.logout() 
   }
 )
-
-const initialState = user 
- ? { loggedIn: true, isAdmin: userIsAdmin(), user } 
- : { loggedIn: false, isAdmin: false, user: null }
 
 const authSlice = createSlice({
   name: 'auth',
