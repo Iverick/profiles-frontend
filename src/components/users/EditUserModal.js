@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { useNavigate  } from 'react-router-dom'
 import { updateUserAPIData } from '../../services/user.service'
+import SubmitRejectButtons from '../partials/SubmitRejectButtons'
 
 export default function EditUserModal(props) {
 
@@ -76,6 +77,7 @@ export default function EditUserModal(props) {
                 There were errors editing this user
               </div>
 
+              {/* email field */}
               <div className="form-floating my-4">
                 <input 
                   type="email" 
@@ -132,19 +134,8 @@ export default function EditUserModal(props) {
                 </div>
               </div>
               
-              {/* submit/reject buttons */}
-              <div className="text-center mt-4">
-                <button type="button" className="btn btn-light border-0 mx-4 px-4" onClick={ handleSubmit }>
-                  <i className="fa-solid fa-check"></i>
-                </button>
-                <button type="button" 
-                        id="close-modal"
-                        className="btn btn-light border-0 mx-4 px-4" 
-                        data-bs-dismiss="modal">
-                  <i className="fa-solid fa-xmark"></i>
-                </button>
-              </div>
-
+              <SubmitRejectButtons handleSubmit={handleSubmit} />
+              
             </form>
           </div>
         </div>
