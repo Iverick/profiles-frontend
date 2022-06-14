@@ -30,7 +30,7 @@ export default function CreateProfileModal(props) {
     // If userId was provided in props set it.
     // Otherwise assign it to the id of authenticated user.
     if (props.userId) {
-      setUserId(props.userId)
+      setUserId(props.userId.userId)
     } else {
       setUserId(user.id)
     }
