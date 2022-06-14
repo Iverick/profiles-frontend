@@ -19,11 +19,6 @@ export default function User() {
   }, [userId])
 
   // TODO: Remove this method after finishing the component!!!!!!!!
-  const handleEditClick = () => {
-    console.log("edit icon was clicked!")
-  }
-
-  // TODO: Remove this method after finishing the component!!!!!!!!
   const handleDeleteClick = () => {
     console.log("delete icon was clicked!")
   }
@@ -47,7 +42,7 @@ export default function User() {
         <div className="row">
           <div className="col-6 text-end">
             <button type="button" className="btn btn-white" data-bs-toggle="modal" data-bs-target="#userBackdrop">
-              <i className="fa-solid fa-pencil" onClick={ handleEditClick }></i>
+              <i className="fa-solid fa-pencil"></i>
             </button>
           </div>
           <div className="col-6 text-start">
@@ -69,8 +64,6 @@ export default function User() {
       </div>
 
       <EditUserModal user={user} />
-
-
 
       {/* TODO: Add user props to this modal. Careful here - user ID should be passed! */}
       <CreateProfileModal />

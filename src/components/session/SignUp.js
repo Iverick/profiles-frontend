@@ -99,7 +99,8 @@ export default function SignUp() {
 
           <div className="checkbox my-4">
             <label>
-              <input type="checkbox" checked={ admin } onChange={ handleAdmin } /> Admin
+              <input type="checkbox" checked={ admin } onChange={ handleAdmin } /> 
+              <span className="text-muted ms-2">Admin</span>
             </label>
           </div>
 

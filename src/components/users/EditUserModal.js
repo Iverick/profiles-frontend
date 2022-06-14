@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react"
-import { useNavigate  } from 'react-router-dom'
 import { updateUserAPIData } from '../../services/user.service'
-import SubmitRejectButtons from '../partials/SubmitRejectButtons'
+import SubmitRejectProfileButtons from '../partials/SubmitRejectProfileButtons'
 
 export default function EditUserModal(props) {
 
-  let navigate = useNavigate()
   // States for form fields
   const [userId, setUserId] = useState('')
   const [email, setEmail] = useState('')
@@ -14,6 +12,7 @@ export default function EditUserModal(props) {
 
   // States for checking the errors
   const [error, setError] = useState(false)
+  const [success, setSuccess] = useState(false)
 
   useEffect(() => {
     if (props) {
@@ -53,9 +52,8 @@ export default function EditUserModal(props) {
         if (res.status === 200) {
           // On response success close the modal and redirect back to user page
           setPassword('')
-          setError(false)
-          document.getElementById('close-modal').click()
-          return navigate("/users/" + userId)
+          setSuccess(true)
+          return
         }
         // Displays error is res wasn't successfull
         setError(true)
@@ -71,6 +69,10 @@ export default function EditUserModal(props) {
         <div className="modal-content">
           <div className="modal-body">
             <form>
+
+            <div className="text-success" style={{ display: success ? '' : 'none'}}>
+              User data was changed!
+            </div>
 
               <div className="text-danger"
                 style={{ display: error ? '' : 'none'}}>
@@ -134,8 +136,8 @@ export default function EditUserModal(props) {
                 </div>
               </div>
               
-              <SubmitRejectButtons handleSubmit={handleSubmit} />
-              
+              <SubmitRejectProfileButtons handleSubmit={handleSubmit} />
+
             </form>
           </div>
         </div>

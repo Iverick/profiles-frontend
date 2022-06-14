@@ -1,10 +1,14 @@
 import { React, useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { getProfilesAPIData } from'../../services/profile.service'
 import ProfileCard from './ProfileCard'
 import CreateProfileModal from './CreateProfileModal'
 import AddProfileIconCard from './AddProfileIconCard'
 
 export default function Profiles() {
+
+  const { isAdmin } = useSelector((state) => state.auth)
+
   const [profiles, setProfiles] = useState([])
 
   useEffect(() => {
@@ -23,14 +27,10 @@ export default function Profiles() {
           return <ProfileCard profile={profile} key={i} />
         })}
 
-        <AddProfileIconCard />
+        { isAdmin && (<AddProfileIconCard />) }
       </div>
 
-
-      {/* TODO: Add user props to this modal. There should be no props passed I believe */}
       <CreateProfileModal />
-
-
     </div>
   )
 }
