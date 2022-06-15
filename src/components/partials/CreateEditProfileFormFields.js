@@ -7,8 +7,6 @@ export default function CreateEditProfileFormFields(props) {
   
   const { values, handleChange } = props
 
-  console.log(values)
-
   return (
     <div>
       {/* name field */}

@@ -13,6 +13,9 @@ export default function ProfileCard(props) {
   // States for form fields
   const [profile, setProfile] = useState([])
 
+  // Sets unique ID for EditProfile modal of every card
+  const modalElementId = "#edit-profile-" + profile.id
+
   useEffect(() => {
     // Sets initial states based on props
     setProfile(props.profile)
@@ -48,10 +51,9 @@ export default function ProfileCard(props) {
         <div className="d-flex">
           <div className="text-center flex-fill btn-outline-primary rounded-0 rounded-start border-0">
             <button type="button"
-              className="btn btn-sm w-100 p-2"
-              data-bs-toggle="modal"
-              data-bs-target="#edit-profile-backdrop"
-              data-bs-key="">
+                    className="btn btn-sm w-100 p-2"
+                    data-bs-toggle="modal"
+                    data-bs-target={modalElementId}>
               <span className="text-black-50 me-2">edit</span>
               <i className="fa-solid fa-pencil text-black-50"></i>
             </button>
@@ -65,7 +67,7 @@ export default function ProfileCard(props) {
         </div>
       </div>
 
-      <EditProfileModal profileData={profile} />
+      <EditProfileModal profileData={profile} modalElementId={modalElementId} />
     </div>
   )
 }

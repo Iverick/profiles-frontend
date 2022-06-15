@@ -3,14 +3,9 @@ import { updateProfileAPIData } from '../../services/profile.service'
 import SubmitRejectProfileButtons from '../partials/SubmitRejectProfileButtons'
 import CreateEditProfileFormFields from '../partials/CreateEditProfileFormFields'
 
-// Return today's date
-const setToday = () => {
-  return new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0]
-}
-
 export default function EditProfileModal(props) {
 
-  // console.log(props)
+  const modalElementId = props.modalElementId.substring(1)
 
   // States for form fields
   const [state, setState] = useState({
@@ -26,7 +21,6 @@ export default function EditProfileModal(props) {
   const [error, setError] = useState(false)
   const [success, setSuccess] = useState(false)
 
-
   useEffect(() => {
     setState(props.profileData)
   }, [props])
@@ -40,9 +34,9 @@ export default function EditProfileModal(props) {
     })
   }
 
-  const handleSubmit = (e) => { 
+  const handleSubmit = (e) => {
     e.preventDefault()
-    
+
     setError(false)
     setSuccess(false)
     // Make a call to PUT API endpoint
@@ -59,7 +53,7 @@ export default function EditProfileModal(props) {
   }
 
   return (
-    <div className="modal fade" id="edit-profile-backdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div className="modal fade" id={modalElementId} data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-body">
