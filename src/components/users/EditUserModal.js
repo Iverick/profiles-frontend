@@ -50,9 +50,10 @@ export default function EditUserModal(props) {
       const updatedData = { email, password, admin }
       updateUserAPIData(userId, updatedData).then((res) => {
         if (res.status === 200) {
-          // On response success close the modal and redirect back to user page
+          // On response success close the modal and reload the user page
           setPassword('')
           setSuccess(true)
+          setTimeout(() => { window.location.reload(false) }, "1500")
           return
         }
         // Displays error is res wasn't successfull

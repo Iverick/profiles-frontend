@@ -17,10 +17,10 @@ const MainRouter = () => {
     { loggedIn ? (
       <Routes>
         <Route path="*" element= { <Navigate from="*" to="/" exact /> } />
-        <Route path="/" element={<Dashboard />} />
+        <Route path="/" element={<Profiles />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/users" element= {<Users />} />
         <Route path="/users/:userId" element={<User />} />
-        <Route path="/profiles" element={<Profiles />} />
       </Routes>
     ) : (
       <Routes>

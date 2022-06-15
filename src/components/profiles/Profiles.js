@@ -15,13 +15,12 @@ export default function Profiles() {
   useEffect(() => {
     // Connecting to API /user/:user_id endpoint after the element was mounted and adds to the 
     // app's state list of profiles for the authenticated user
-    // getProfilesAPIData().then((data) => {
-    //   setProfiles(data)
-    // })
     getUserAPIData(user.id).then((data) => {
       setProfiles(data.profiles)
     })
   }, [user.id])
+
+  console.log(profiles)
 
   return (
     <div>
@@ -33,9 +32,8 @@ export default function Profiles() {
         })}
 
         <AddProfileIconCard />
+        <CreateProfileModal />
       </div>
-
-      <CreateProfileModal />
     </div>
   )
 }

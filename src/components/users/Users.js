@@ -17,8 +17,8 @@ export default function Users() {
       <h2 className="pb-2">Users:</h2>
 
       <div className="row g-2 py-3 row-cols-4">
-        { users.map((user) => {
-          return <UserCard user={user}  key={user.id} />
+        { users.map((user, i) => {
+          return <UserCard user={user}  key={i} />
         })}
       </div>  
     </div> 

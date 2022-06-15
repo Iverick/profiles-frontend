@@ -54,8 +54,9 @@ export default function CreateProfileModal(props) {
       createdData['user_id'] = userId
       postProfileAPIData(createdData).then((res) => {
         if (res.status === 201) {
-          // On response successfully created close the modal and redirect to user page
+          // On response successfully created display success message and reload profiles page
           setSuccess(true)
+          setTimeout(() => { window.location.reload(false) }, "1500")
           return
         }
         // Displays error is res wasn't successfull

@@ -70,7 +70,7 @@ export default function User() {
           return <ProfileCard profile={profile} key={i} />
         })}
 
-        { isAdmin && <AddProfileIconCard /> }
+        <AddProfileIconCard />
 
         {/* Throws "component is changing a controlled input to be uncontrolled" error on inserting this component */}
         <EditUserModal user={user} key={user.id} />
