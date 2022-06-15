@@ -22,4 +22,20 @@ const postProfileAPIData = async(createdData) => {
   }
 }
 
-export { getProfilesAPIData, postProfileAPIData }
+// Makes a POST request to API /profiles/:profileId endpoint to update a existing profile
+const updateProfileAPIData = async(updatedData) => {
+  try {
+    return await axios
+      .put(API_URL + "profiles/" + updatedData.id, updatedData, {
+        headers: { "Content-Type": "application/json" }
+      })
+      .then((res) => {
+        return res
+      })
+  } catch(err) {
+    console.log(err)
+    return await err
+  }
+}
+
+export { getProfilesAPIData, postProfileAPIData, updateProfileAPIData }

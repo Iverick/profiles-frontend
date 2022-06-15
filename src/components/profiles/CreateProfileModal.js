@@ -4,11 +4,6 @@ import { postProfileAPIData } from '../../services/profile.service'
 import SubmitRejectProfileButtons from '../partials/SubmitRejectProfileButtons'
 import CreateEditProfileFormFields from '../partials/CreateEditProfileFormFields'
 
-// Return today's date
-const setToday = () => {
-  return new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split("T")[0]
-}
-
 export default function CreateProfileModal(props) {
 
   const { user } = useSelector((state) => state.auth)
@@ -35,7 +30,7 @@ export default function CreateProfileModal(props) {
     } else {
       setUserId(user.id)
     }
-  }, [props])
+  }, [props, user.id])
 
   // Handles change of form fields values
   const handleChange = (e) => {
@@ -45,7 +40,6 @@ export default function CreateProfileModal(props) {
       ...state,
       [name]: value
     })
-    console.log(state)
   }
 
   const handleSubmit = (e) => {
@@ -53,6 +47,7 @@ export default function CreateProfileModal(props) {
     if (state.name === '' || state.birthday === '' || state.gender === '' || state.city === '' || userId === null) {
       setError(true)
     } else {
+      // Make a call to POST API endpoint
       setError(false)
       setSuccess(false)
       const createdData = state
@@ -88,8 +83,8 @@ export default function CreateProfileModal(props) {
 
               {/* submit/reject buttons */}
               <SubmitRejectProfileButtons handleSubmit={handleSubmit} />
+              
             </div>
-
           </div>
         </div>
       </div>

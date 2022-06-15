@@ -4,6 +4,7 @@ const setToday = () => {
 }
 
 export default function CreateEditProfileFormFields(props) {
+  
   const { handleChange } = props
 
   return (

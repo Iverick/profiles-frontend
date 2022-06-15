@@ -71,11 +71,12 @@ export default function User() {
         })}
 
         { isAdmin && <AddProfileIconCard /> }
+
+        {/* Throws "component is changing a controlled input to be uncontrolled" error on inserting this component */}
+        <EditUserModal user={user} key={user.id} />
+
+        <CreateProfileModal userId={userId} /> 
       </div>
-
-      <EditUserModal user={user} />
-
-      <CreateProfileModal userId={userId} /> 
     </div>
   );
 }

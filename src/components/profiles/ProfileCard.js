@@ -9,7 +9,7 @@ const changeInputBirthdayFormat = (date) => {
   return birthday
 }
 
-export default function ProfileCard(props) {
+export default function ProfileCard(props, key) {
 
   const { isAdmin } = useSelector((state) => state.auth)
 
@@ -55,7 +55,7 @@ export default function ProfileCard(props) {
 
       </div>
 
-      <EditProfileModal />
-    </div>    
+      <EditProfileModal profileData={profile} key={this} />
+    </div>     
   )
 }
