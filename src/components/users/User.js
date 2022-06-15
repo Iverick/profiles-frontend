@@ -41,12 +41,12 @@ export default function User() {
   return (
     <div>
       <div className="text-center">
-        <p className="fs-3">{ user.username }</p>
-        <p className="fs-4">{ user.email }</p>
-        <p className="fs-5">{ userStatus() }</p>
+        <p className="fs-3">{user.username}</p>
+        <p className="fs-4">{user.email}</p>
+        <p className="fs-5">{userStatus()}</p>
 
         {/* Edit and Delete user icons */}
-        { isAdmin && (
+        {isAdmin && (
           <div className="row">
             <div className="col-6 text-end">
               <button type="button" className="btn btn-white" data-bs-toggle="modal" data-bs-target="#userBackdrop">
@@ -55,7 +55,7 @@ export default function User() {
             </div>
             <div className="col-6 text-start">
               <button type="button" className="btn btn-white">
-                <i className="fa-solid fa-trash-can" onClick={ handleDeleteClick }></i>
+                <i className="fa-solid fa-trash-can" onClick={handleDeleteClick}></i>
               </button>
             </div>
           </div>
@@ -66,16 +66,16 @@ export default function User() {
       <h2 className="pb-2">Profiles:</h2>
 
       <div className="row gx-5 py-3">
-        { profiles.map((profile, i) => {
+        {profiles.map((profile, i) => {
           return <ProfileCard profile={profile} key={i} />
         })}
 
         <AddProfileIconCard />
 
         {/* Throws "component is changing a controlled input to be uncontrolled" error on inserting this component */}
-        <EditUserModal user={user} key={user.id} />
+        <EditUserModal user={user} />
 
-        <CreateProfileModal userId={userId} /> 
+        <CreateProfileModal userId={userId} />
       </div>
     </div>
   );

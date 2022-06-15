@@ -20,8 +20,6 @@ export default function Profiles() {
     })
   }, [user.id])
 
-  console.log(profiles)
-
   return (
     <div>
       <h2 className="pb-2">Profiles:</h2>

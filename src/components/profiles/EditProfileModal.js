@@ -34,10 +34,9 @@ export default function EditProfileModal(props) {
   // Handles change of form fields values
   const handleChange = (e) => {
     const name = e.target.name
-    const value = e.target.value
     setState({
       ...state,
-      [name]: value
+      [name]: e.target.value
     })
   }
 

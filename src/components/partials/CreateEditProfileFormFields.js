@@ -5,7 +5,9 @@ const setToday = () => {
 
 export default function CreateEditProfileFormFields(props) {
   
-  const { handleChange } = props
+  const { values, handleChange } = props
+
+  console.log(values)
 
   return (
     <div>
@@ -16,7 +18,7 @@ export default function CreateEditProfileFormFields(props) {
           name="name"
           className="form-control border-0"
           id="name-field"
-          value={props.values.name}
+          value={values.name}
           onChange={handleChange} />
         <label htmlFor="name-field">Name</label>
       </div>
@@ -29,7 +31,7 @@ export default function CreateEditProfileFormFields(props) {
           className="form-control border-0"
           id="birthday-field"
           max={setToday()}
-          value={props.values.birthday}
+          value={values.birthday}
           onChange={handleChange} />
         <label htmlFor="birthday-field">Birthday</label>
       </div>
@@ -49,7 +51,7 @@ export default function CreateEditProfileFormFields(props) {
                 name="gender"
                 id="male-radio"
                 value="male"
-                checked={props.values.gender === 'male'}
+                checked={values.gender === 'male'}
                 onChange={handleChange} />
             </div>
           </div>
@@ -65,7 +67,7 @@ export default function CreateEditProfileFormFields(props) {
                 name="gender"
                 id="female-radio"
                 value="female"
-                checked={props.values.gender === 'female'}
+                checked={values.gender === 'female'}
                 onChange={handleChange} />
             </div>
           </div>
@@ -79,7 +81,7 @@ export default function CreateEditProfileFormFields(props) {
           name="city"
           className="form-control border-0"
           id="city-field"
-          value={props.values.city}
+          value={values.city}
           onChange={handleChange} />
         <label htmlFor="city-field">City</label>
       </div>
