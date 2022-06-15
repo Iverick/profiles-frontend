@@ -1,22 +1,27 @@
 import { React, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { getProfilesAPIData } from'../../services/profile.service'
+import { getUserAPIData } from '../../services/user.service'
 import ProfileCard from './ProfileCard'
 import CreateProfileModal from './CreateProfileModal'
 import AddProfileIconCard from './AddProfileIconCard'
 
 export default function Profiles() {
 
-  const { isAdmin } = useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.auth)
 
   const [profiles, setProfiles] = useState([])
 
   useEffect(() => {
-    // Connecting to API /profiles endpoint after the element was mounted
-    getProfilesAPIData().then((data) => {
-      setProfiles(data)
+    // Connecting to API /user/:user_id endpoint after the element was mounted and adds to the 
+    // app's state list of profiles for the authenticated user
+    // getProfilesAPIData().then((data) => {
+    //   setProfiles(data)
+    // })
+    getUserAPIData(user.id).then((data) => {
+      setProfiles(data.profiles)
     })
-  }, [])
+  }, [user.id])
 
   return (
     <div>
@@ -27,7 +32,7 @@ export default function Profiles() {
           return <ProfileCard profile={profile} key={i} />
         })}
 
-        { isAdmin && (<AddProfileIconCard />) }
+        <AddProfileIconCard />
       </div>
 
       <CreateProfileModal />
