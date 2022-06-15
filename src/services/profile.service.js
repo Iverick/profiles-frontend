@@ -38,4 +38,19 @@ const updateProfileAPIData = async(updatedData) => {
   }
 }
 
-export { getProfilesAPIData, postProfileAPIData, updateProfileAPIData }
+const destroyProfileAPI = async(profileId) => {
+  try {
+    return await axios
+      .delete(API_URL + "profiles/" + profileId, {
+        headers: { "Content-Type": "application/json" }
+      })
+      .then((res) => {
+        return res
+      })
+  } catch(err) {
+    console.log(err)
+    return await err
+  }
+}
+
+export { getProfilesAPIData, postProfileAPIData, updateProfileAPIData, destroyProfileAPI }

@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react"
-import { useSelector } from 'react-redux'
 import EditProfileModal from './EditProfileModal'
-import SubmitRejectProfileButtons from '../partials/SubmitRejectProfileButtons'
-import { updateProfileAPIData } from '../../services/profile.service'
+import { destroyProfileAPI } from '../../services/profile.service'
 
 // Changes input date format
 const changeInputBirthdayFormat = (date) => {
@@ -19,6 +17,17 @@ export default function ProfileCard(props) {
     // Sets initial states based on props
     setProfile(props.profile)
   }, [props])
+
+  // Make a call to API endpoint to remove a profile with the specified ID
+  // Reloads page on success
+  const handleDelete = () => {
+    destroyProfileAPI(profile.id).then((res) => {
+      if (res.status === 204) {
+        window.location.reload(false)
+      }
+      console.log(res)
+    })
+  }
 
   return (
     <div className="col-3">
@@ -38,16 +47,17 @@ export default function ProfileCard(props) {
 
         <div className="d-flex">
           <div className="text-center flex-fill btn-outline-primary rounded-0 rounded-start border-0">
-            <button type="button" 
-                    className="btn btn-sm w-100 p-2" 
-                    data-bs-toggle="modal" 
-                    data-bs-target="#edit-profile-backdrop">
+            <button type="button"
+              className="btn btn-sm w-100 p-2"
+              data-bs-toggle="modal"
+              data-bs-target="#edit-profile-backdrop"
+              data-bs-key="">
               <span className="text-black-50 me-2">edit</span>
               <i className="fa-solid fa-pencil text-black-50"></i>
             </button>
           </div>
           <div className="text-center flex-fill btn-outline-danger rounded-0 rounded-end border-0">
-            <button className="btn btn-sm w-100 p-2">
+            <button className="btn btn-sm w-100 p-2" onClick={handleDelete}>
               <span className="text-black-50 me-2">delete</span>
               <i className="fa-solid fa-trash-can text-black-50"></i>
             </button>
