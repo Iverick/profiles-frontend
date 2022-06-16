@@ -27,6 +27,8 @@ export default function ProfileCard(props) {
     destroyProfileAPI(profile.id).then((res) => {
       if (res.status === 204) {
         window.location.reload(false)
+      } else {
+        console.log(res)
       }
     })
   }

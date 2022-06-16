@@ -38,7 +38,7 @@ export default function Navbar() {
           <Link to={"users/" + user.id} className="d-flex align-items-center text-dark text-decoration-none ms-3">
             {/* Userpick image */}
             <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeeUl9IZDN97pBQNgeunx6dD1df-4g7vkPFw&usqp=CAU"
+              src={process.env.PUBLIC_URL+"userpick_img.png"}
               alt=""
               className={userpickImgClasses.join(" ")}
               width="45"

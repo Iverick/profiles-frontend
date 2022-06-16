@@ -2,6 +2,7 @@ import { React, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import ProfileCard from '../profiles/ProfileCard'
+import Spinner from '../Spinner'
 import EditUserModal from './EditUserModal'
 import DeleteUserModal from './DeleteUserModal'
 import { getUserAPIData } from '../../services/user.service'
@@ -17,10 +18,14 @@ export default function User() {
   const [user, setUser] = useState([])
   const [profiles, setProfiles] = useState([])
 
+  const [isLoading, setIsLoading] = useState(false)
+
   useEffect(() => {
+    setIsLoading(true)
     getUserAPIData(userId.userId).then((data) => {
       setUser(data)
       setProfiles(data.profiles)
+      setIsLoading(false)
     })
   }, [userId])
 
@@ -35,7 +40,7 @@ export default function User() {
     return userStatus
   }
 
-  return (
+  const renderUser = (
     <div>
       <div className="text-center">
         <p className="fs-3">{user.username}</p>
@@ -76,5 +81,11 @@ export default function User() {
         <CreateProfileModal userId={userId} />
       </div>
     </div>
-  );
+  )
+
+  return (
+    <div>
+      {isLoading ? <Spinner /> : renderUser}
+    </div>
+  )
 }
