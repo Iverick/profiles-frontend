@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
+import { Button } from 'react-bootstrap'
 import ProfileCard from '../profiles/ProfileCard'
 import Spinner from '../Spinner'
 import EditUserModal from './EditUserModal'
@@ -17,8 +18,10 @@ export default function User() {
   const userId = useParams()
   const [user, setUser] = useState([])
   const [profiles, setProfiles] = useState([])
-
   const [isLoading, setIsLoading] = useState(false)
+
+  // ShowEditUser used to display bootstrap's modal
+  const [showEditUser, setShowEditUser] = useState(false)
 
   useEffect(() => {
     setIsLoading(true)
@@ -40,6 +43,10 @@ export default function User() {
     return userStatus
   }
 
+  // Button click handler for bootstrap ShowEditUser modal
+  const handleShowEditUser = () => setShowEditUser(true)
+  const handleCloseEditUser = () => setShowEditUser(false)
+
   const renderUser = (
     <div>
       <div className="text-center">
@@ -51,9 +58,11 @@ export default function User() {
         {isAdmin && (
           <div className="row">
             <div className="col-6 text-end">
-              <button type="button" className="btn btn-white" data-bs-toggle="modal" data-bs-target="#edit-user">
+
+              <Button variant="btn btn-white" onClick={handleShowEditUser}>
                 <i className="fa-solid fa-pencil"></i>
-              </button>
+              </Button>
+
             </div>
             <div className="col-6 text-start">
               <button type="button" className="btn btn-white" data-bs-toggle="modal" data-bs-target="#delete-user">
@@ -74,7 +83,7 @@ export default function User() {
         <AddProfileIconCard />
 
         {/* Throws "component is changing a controlled input to be uncontrolled" error on inserting this component */}
-        <EditUserModal user={user} />
+        <EditUserModal user={user} showEditUser={showEditUser} onHide={handleCloseEditUser} />
 
         <DeleteUserModal userId={userId} />
 
