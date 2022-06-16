@@ -5,7 +5,11 @@ const setToday = () => {
 
 export default function CreateEditProfileFormFields(props) {
   
-  const { values, handleChange } = props
+  const { values, handleChange, nameFieldError, birthdayFieldError, cityFieldError } = props
+
+  // CSS styles for form fields
+  const defaultFieldStyle = "form-control border-0"
+  const errorFieldStyle = "form-control border border-danger"
 
   return (
     <div>
@@ -14,7 +18,7 @@ export default function CreateEditProfileFormFields(props) {
         <input
           type="text"
           name="name"
-          className="form-control border-0"
+          className={nameFieldError ? errorFieldStyle :defaultFieldStyle}
           id="name-field"
           value={values.name}
           onChange={handleChange} />
@@ -26,7 +30,7 @@ export default function CreateEditProfileFormFields(props) {
         <input
           type="date"
           name="birthday"
-          className="form-control border-0"
+          className={birthdayFieldError ? errorFieldStyle : defaultFieldStyle}
           id="birthday-field"
           max={setToday()}
           value={values.birthday}
@@ -77,7 +81,7 @@ export default function CreateEditProfileFormFields(props) {
         <input
           type="text"
           name="city"
-          className="form-control border-0"
+          className={cityFieldError ? errorFieldStyle :defaultFieldStyle}
           id="city-field"
           value={values.city}
           onChange={handleChange} />

@@ -1,6 +1,5 @@
 import { React, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { getProfilesAPIData } from '../../services/profile.service'
 import { getUserAPIData } from '../../services/user.service'
 import ProfileCard from './ProfileCard'
 import CreateProfileModal from './CreateProfileModal'

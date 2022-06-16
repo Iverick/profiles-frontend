@@ -18,12 +18,23 @@ export default function EditProfileModal(props) {
   })
 
   // States for checking the errors
-  const [error, setError] = useState(false)
   const [success, setSuccess] = useState(false)
+  const [error, setError] = useState(false)
+  const [nameFieldError, setNameFieldError] = useState(false)
+  const [birthdayFieldError, setBirthdayFieldError] = useState(false)
+  const [genderFieldError, setGenderFieldError] = useState(false)
+  const [cityFieldError, setCityFieldError] = useState(false)
 
   useEffect(() => {
     setState(props.profileData)
   }, [props])
+
+  // let [formFieldsError, setFormFieldsError] = useState({
+  //   name: false,
+  //   birthday: false,
+  //   gender: false,
+  //   city: false
+  // })
 
   // Handles change of form fields values
   const handleChange = (e) => {
@@ -39,17 +50,43 @@ export default function EditProfileModal(props) {
 
     setError(false)
     setSuccess(false)
-    // Make a call to PUT API endpoint
-    updateProfileAPIData(state).then((res) => {
-      if (res.status === 200) {
-        // On response successfully created display success message and reload profiles page
-        setSuccess(true)
-        setTimeout(() => { window.location.reload(false) }, "1500")
-        return
-      }
-      // Displays error is res wasn't successfull
+    setNameFieldError(false)
+    setGenderFieldError(false)
+    setCityFieldError(false)
+    setBirthdayFieldError(false)
+
+    // setFormFieldsError(Object.keys(formFieldsError).forEach(v => formFieldsError[v] = false))
+
+    // Validate fields and make a call to PUT API endpoint
+    if (state.name === '') {
+      // setFormFieldsError({...formFieldsError, name: true})
       setError(true)
-    })
+      setNameFieldError(true)
+    }
+    else if (state.gender === '') {
+      setError(true)
+      setGenderFieldError(true)
+    }
+    else if (state.city === '') {
+      setError(true)
+      setCityFieldError(true)
+    }
+    else if (state.birthday === '' || state.birthday.length !== 10) {
+      setError(true)
+      setBirthdayFieldError(true)
+    }
+    else {
+      updateProfileAPIData(state).then((res) => {
+        if (res.status === 200) {
+          // On response successfully created display success message and reload profiles page
+          setSuccess(true)
+          setTimeout(() => { window.location.reload(false) }, "1500")
+          return
+        }
+        // Displays error is res wasn't successfull
+        setError(true)
+      })
+    }
   }
 
   return (
@@ -67,7 +104,13 @@ export default function EditProfileModal(props) {
                 There were errors creating a profile
               </div>
 
-              <CreateEditProfileFormFields values={state} handleChange={handleChange} />
+              <CreateEditProfileFormFields 
+                values={state} 
+                handleChange={handleChange} 
+                nameFieldError={nameFieldError}
+                birthdayFieldError={birthdayFieldError}
+                genderFieldError={genderFieldError}
+                cityFieldError={cityFieldError} />
 
               {/* submit/reject buttons */}
               <SubmitRejectProfileButtons handleSubmit={handleSubmit} />
