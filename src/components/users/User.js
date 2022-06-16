@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import ProfileCard from '../profiles/ProfileCard'
 import EditUserModal from './EditUserModal'
+import DeleteUserModal from './DeleteUserModal'
 import { getUserAPIData } from '../../services/user.service'
 import AddProfileIconCard from '../profiles/AddProfileIconCard'
 import CreateProfileModal from '../profiles/CreateProfileModal'
@@ -23,19 +24,15 @@ export default function User() {
     })
   }, [userId])
 
-  // TODO: Remove this method after finishing the component!!!!!!!!
-  const handleDeleteClick = () => {
-    console.log("delete icon was clicked!")
-  }
-
   // Sets userStatus to admin to user based on state data
   const userStatus = () => {
     let userStatus
     if (user.admin) {
-      return userStatus = 'admin'
+      userStatus = 'admin'
     } else {
-      return userStatus = 'user'
+      userStatus = 'user'
     }
+    return userStatus
   }
 
   return (
@@ -49,18 +46,17 @@ export default function User() {
         {isAdmin && (
           <div className="row">
             <div className="col-6 text-end">
-              <button type="button" className="btn btn-white" data-bs-toggle="modal" data-bs-target="#userBackdrop">
+              <button type="button" className="btn btn-white" data-bs-toggle="modal" data-bs-target="#edit-user">
                 <i className="fa-solid fa-pencil"></i>
               </button>
             </div>
             <div className="col-6 text-start">
-              <button type="button" className="btn btn-white">
-                <i className="fa-solid fa-trash-can" onClick={handleDeleteClick}></i>
+              <button type="button" className="btn btn-white" data-bs-toggle="modal" data-bs-target="#delete-user">
+                <i className="fa-solid fa-trash-can"></i>
               </button>
             </div>
           </div>
         )}
-
       </div>
 
       <h2 className="pb-2">Profiles:</h2>
@@ -74,6 +70,8 @@ export default function User() {
 
         {/* Throws "component is changing a controlled input to be uncontrolled" error on inserting this component */}
         <EditUserModal user={user} />
+
+        <DeleteUserModal userId={userId} />
 
         <CreateProfileModal userId={userId} />
       </div>

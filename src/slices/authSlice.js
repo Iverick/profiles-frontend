@@ -46,8 +46,15 @@ export const login = createAsyncThunk(
 // Resolves a call to logout API endpoint using authSerive
 export const logout = createAsyncThunk(
   "auth/logout",
-  async() => { 
-    await authSerive.logout() 
+  async(thunkAPI) => { 
+    try {
+      await authSerive.logout() 
+    } catch(err) {
+      console.log(err)
+      localStorage.removeItem("token")
+      localStorage.removeItem("user")
+      return thunkAPI.rejectWithValue()
+    }
   }
 )
 
@@ -58,6 +65,7 @@ const authSlice = createSlice({
     [register.fulfilled]: (state, action) => {
       state.loggedIn = false
       state.isAdmin = false
+      state.user = null
     },
     [register.rejected]: (state, action) => {
       state.loggedIn = false
@@ -74,6 +82,11 @@ const authSlice = createSlice({
       state.user = null
     },
     [logout.fulfilled]: (state, action) => {
+      state.loggedIn = false
+      state.isAdmin = false
+      state.user = null
+    },
+    [logout.rejected]: (state, action) => {
       state.loggedIn = false
       state.isAdmin = false
       state.user = null

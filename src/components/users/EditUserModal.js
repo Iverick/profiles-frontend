@@ -44,6 +44,9 @@ export default function EditUserModal(props) {
   // Handling the submit button click
   const handleSubmit = (e) => {
     e.preventDefault()
+    setSuccess(false)
+    setError(false)
+
     if (email === '' || password === '' || password === undefined) {
       setError(true)
     } else {
@@ -65,43 +68,43 @@ export default function EditUserModal(props) {
   if (!props) return <div></div>
 
   return (
-    <div className="modal fade" id="userBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div className="modal fade" id="edit-user" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-body">
-            <form>
 
-            <div className="text-success" style={{ display: success ? '' : 'none'}}>
+            <div className="text-success" style={{ display: success ? '' : 'none' }}>
               User data was changed!
             </div>
 
-              <div className="text-danger"
-                style={{ display: error ? '' : 'none'}}>
-                There were errors editing this user
-              </div>
+            <div className="text-danger"
+              style={{ display: error ? '' : 'none' }}>
+              There were errors editing this user
+            </div>
 
+            <form>
               {/* email field */}
               <div className="form-floating my-4">
-                <input 
-                  type="email" 
-                  className="form-control border-0" 
+                <input
+                  type="email"
+                  className="form-control border-0"
                   id="emailField"
-                  value={ email }
-                  onChange={ handleEmail } />
+                  value={email}
+                  onChange={handleEmail} />
                 <label htmlFor="emailField">Email address</label>
               </div>
 
               {/* password field */}
               <div className="form-floating my-4">
-                <input 
-                  type="password" 
-                  className="form-control border-0" 
-                  id="passwordField" 
-                  value={ password }
-                  onChange={ handlePassword } />
+                <input
+                  type="password"
+                  className="form-control border-0"
+                  id="passwordField"
+                  value={password}
+                  onChange={handlePassword} />
                 <label htmlFor="passwordField">Password</label>
               </div>
-              
+
               {/* radio buttons */}
               <div className="row justify-content-between">
                 <div className="col-4">
@@ -109,14 +112,14 @@ export default function EditUserModal(props) {
                     <label className="form-check-label" htmlFor="user-radio">
                       <span className="text-secondary">User</span>
                     </label>
-                    <input 
-                      className="form-check-input flex-shrink-0" 
-                      type="radio" 
-                      name="user-btn" 
-                      id="user-radio" 
-                      value="" 
-                      checked={ isAdmin(false) }
-                      onChange={ handleAdminClick } />
+                    <input
+                      className="form-check-input flex-shrink-0"
+                      type="radio"
+                      name="user-btn"
+                      id="user-radio"
+                      value=""
+                      checked={isAdmin(false)}
+                      onChange={handleAdminClick} />
                   </div>
                 </div>
 
@@ -125,18 +128,18 @@ export default function EditUserModal(props) {
                     <label className="form-check-label" htmlFor="admin-radio">
                       <span className="text-secondary">Admin</span>
                     </label>
-                    <input 
-                      className="form-check-input flex-shrink-0" 
-                      type="radio" 
-                      name="admin-btn" 
-                      id="admin-radio" 
+                    <input
+                      className="form-check-input flex-shrink-0"
+                      type="radio"
+                      name="admin-btn"
+                      id="admin-radio"
                       value="1"
-                      checked={ isAdmin(true) } 
-                      onChange={ handleAdminClick } />
+                      checked={isAdmin(true)}
+                      onChange={handleAdminClick} />
                   </div>
                 </div>
               </div>
-              
+
               <SubmitRejectProfileButtons handleSubmit={handleSubmit} />
 
             </form>

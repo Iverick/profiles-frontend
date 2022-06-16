@@ -38,6 +38,7 @@ const updateProfileAPIData = async(updatedData) => {
   }
 }
 
+// Makes a DELETE request to API /profiles/:profileId endpoint to remove a profile
 const destroyProfileAPI = async(profileId) => {
   try {
     return await axios

@@ -24,4 +24,20 @@ const updateUserAPIData = async(userId, updatedData) => {
   }
 }
 
-export { getUsersAPIData, getUserAPIData, updateUserAPIData }
+// Makes a DELETE request to API /users/:userId endpoint to remove a user
+const destroyProfileAPI = async(userId) => {
+  try {
+    return await axios
+      .delete(API_URL + "users/" + userId, {
+        headers: { "Content-Type": "application/json" }
+      })
+      .then((res) => {
+        return res
+      })
+  } catch(err) {
+    console.log(err)
+    return await err
+  }
+}
+
+export { getUsersAPIData, getUserAPIData, updateUserAPIData, destroyProfileAPI }

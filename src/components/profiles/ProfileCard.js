@@ -14,7 +14,7 @@ export default function ProfileCard(props) {
   const [profile, setProfile] = useState([])
 
   // Sets unique ID for EditProfile modal of every card
-  const modalElementId = "#edit-profile-" + profile.id
+  const modalElementId = `#edit-profile-${profile.id}`
 
   useEffect(() => {
     // Sets initial states based on props
@@ -28,7 +28,6 @@ export default function ProfileCard(props) {
       if (res.status === 204) {
         window.location.reload(false)
       }
-      console.log(res)
     })
   }
 
