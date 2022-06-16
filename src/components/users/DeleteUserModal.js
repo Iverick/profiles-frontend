@@ -17,10 +17,6 @@ export default function DeleteUserModal(props) {
   let navigate = useNavigate()
   const dispatch = useDispatch()
 
-  const handleCloseModal = (e) => {
-    document.getElementById('close-modal').click()
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault()
     setSuccess(false)
@@ -33,7 +29,7 @@ export default function DeleteUserModal(props) {
       if (res.status === 204) {
         setSuccess(true)
 
-        if (userId == user.id) {
+        if (Number(userId) === user.id) {
           setTimeout(() => {
             dispatch(logout())
               .unwrap()
@@ -52,12 +48,10 @@ export default function DeleteUserModal(props) {
         console.log(res)
       }
     })
-
-
   }
 
   return (
-    <div className="modal fade" id="delete-user" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div className="modal fade" id="delete-user" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="deleteUserLabel" aria-hidden="true">
       <div className="modal-dialog modal-dialog-centered">
         <div className="modal-content">
           <div className="modal-body">
@@ -73,7 +67,7 @@ export default function DeleteUserModal(props) {
 
             <div className="text-center my-4">Do you really want to remove this user?</div>
 
-            <SubmitRejectProfileButtons handleSubmit={handleSubmit} handleCloseModal={handleCloseModal} />
+            <SubmitRejectProfileButtons handleSubmit={handleSubmit} />
           </div>
         </div>
       </div>
