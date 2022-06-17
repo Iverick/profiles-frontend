@@ -17,8 +17,6 @@ export default function Users() {
     })
   }, [])
 
-  
-
   const renderUsers = (
     <div>
       <h2 className="pb-2">Users:</h2>

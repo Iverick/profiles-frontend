@@ -4,16 +4,7 @@ import authSerive from '../services/auth.service'
 // Parces localStorage to see if there's a user already logged in
 const user = JSON.parse(localStorage.getItem("user"))
 
-// Checks whether user.admin state is true or false
-//
-// Return: Boolean
-const userIsAdmin = () => {
-  return user.admin
-}
-
-const initialState = user 
- ? { loggedIn: true, isAdmin: userIsAdmin(), user } 
- : { loggedIn: false, isAdmin: false, user: null }
+const initialState = user ? { user } : { user: null }
 
 // Resolves a call to register API endpoint using authSerive
 export const register = createAsyncThunk(
@@ -22,7 +13,7 @@ export const register = createAsyncThunk(
     try {
       const response = await authSerive.register(username, email, password, admin)
       return response
-    } catch(err) {
+    } catch (err) {
       console.log(err)
       return thunkAPI.rejectWithValue()
     }
@@ -36,7 +27,7 @@ export const login = createAsyncThunk(
     try {
       const response = await authSerive.login(email, password)
       return { user: response.data.user }
-    } catch(err) {
+    } catch (err) {
       console.log(err)
       return thunkAPI.rejectWithValue()
     }
@@ -46,10 +37,10 @@ export const login = createAsyncThunk(
 // Resolves a call to logout API endpoint using authSerive
 export const logout = createAsyncThunk(
   "auth/logout",
-  async(thunkAPI) => { 
+  async (thunkAPI) => {
     try {
-      await authSerive.logout() 
-    } catch(err) {
+      await authSerive.logout()
+    } catch (err) {
       console.log(err)
       localStorage.removeItem("token")
       localStorage.removeItem("user")
@@ -63,32 +54,21 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     [register.fulfilled]: (state, action) => {
-      state.loggedIn = false
-      state.isAdmin = false
       state.user = null
     },
     [register.rejected]: (state, action) => {
-      state.loggedIn = false
-      state.isAdmin = false
+      state.user = null
     },
     [login.fulfilled]: (state, action) => {
-      state.loggedIn = true
-      state.isAdmin = action.payload.user.admin
       state.user = action.payload.user
     },
     [login.rejected]: (state, action) => {
-      state.loggedIn = false
-      state.isAdmin = false
       state.user = null
     },
     [logout.fulfilled]: (state, action) => {
-      state.loggedIn = false
-      state.isAdmin = false
       state.user = null
     },
     [logout.rejected]: (state, action) => {
-      state.loggedIn = false
-      state.isAdmin = false
       state.user = null
     },
   }

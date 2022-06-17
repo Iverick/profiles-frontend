@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { updateProfileAPIData } from '../../services/profile.service'
 import SubmitRejectProfileButtons from '../partials/SubmitRejectProfileButtons'
-import CreateEditProfileFormFields from '../partials/CreateEditProfileFormFields'
+import ProfileFormFields from '../partials/ProfileFormFields'
 
 export default function EditProfileModal(props) {
 
@@ -104,7 +104,7 @@ export default function EditProfileModal(props) {
                 There were errors creating a profile
               </div>
 
-              <CreateEditProfileFormFields 
+              <ProfileFormFields 
                 values={state} 
                 handleChange={handleChange} 
                 nameFieldError={nameFieldError}

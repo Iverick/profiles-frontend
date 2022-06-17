@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { useSelector } from 'react-redux'
 import { postProfileAPIData } from '../../services/profile.service'
 import SubmitRejectProfileButtons from '../partials/SubmitRejectProfileButtons'
-import CreateEditProfileFormFields from '../partials/CreateEditProfileFormFields'
+import ProfileFormFields from '../partials/ProfileFormFields'
 
 export default function CreateProfileModal() {
 
@@ -76,7 +76,7 @@ export default function CreateProfileModal() {
                 There were errors creating a profile
               </div>
 
-              <CreateEditProfileFormFields values={state} handleChange={handleChange} />
+              <ProfileFormFields values={state} handleChange={handleChange} />
 
               {/* submit/reject buttons */}
               <SubmitRejectProfileButtons handleSubmit={handleSubmit} />

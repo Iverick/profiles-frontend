@@ -10,11 +10,11 @@ import Users from './components/users/Users'
 
 const MainRouter = () => {
 
-  const { loggedIn } = useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.auth)
 
   return (
     <div>
-    { loggedIn ? (
+    { user ? (
       <Routes>
         <Route path="*" element= { <Navigate from="*" to="/" exact /> } />
         <Route path="/" element={<Profiles />} />

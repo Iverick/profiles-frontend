@@ -12,7 +12,7 @@ import CreateProfileModal from '../profiles/CreateProfileModal'
 
 export default function User() {
 
-  const { user, isAdmin } = useSelector((state) => state.auth)
+  const { user } = useSelector((state) => state.auth)
 
   // Component states
   const userId = useParams()
@@ -55,7 +55,7 @@ export default function User() {
         <p className="fs-5">{userStatus()}</p>
 
         {/* Edit and Delete user icons */}
-        {isAdmin && (
+        {user.admin && (
           <div className="row">
             <div className="col-6 text-end">
               <Button variant="btn btn-white" onClick={handleShowEditUser}>
@@ -78,10 +78,10 @@ export default function User() {
           return <ProfileCard profile={profile} key={i} />
         })}
 
-        { user.id === Number(userId.userId) && <AddProfileIconCard /> }
+        {user.id === Number(userId.userId) && <AddProfileIconCard />}
 
         {/* Throws "component is changing a controlled input to be uncontrolled" error on inserting this component */}
-        <EditUserModal user={user} showEditUser={showEditUser} onHide={handleCloseEditUser} />
+        <EditUserModal user={loadedUser} showEditUser={showEditUser} onHide={handleCloseEditUser} />
 
         <DeleteUserModal userId={userId} />
 
