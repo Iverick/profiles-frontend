@@ -20,8 +20,9 @@ export default function User() {
   const [profiles, setProfiles] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
-  // ShowEditUser used to display bootstrap's modal
+  // Used to toggle modal's visibility
   const [showEditUser, setShowEditUser] = useState(false)
+  const [showDeleteUser, setShowDeleteUser] = useState(false)
 
   useEffect(() => {
     setIsLoading(true)
@@ -43,9 +44,12 @@ export default function User() {
     return userStatus
   }
 
-  // Button click handler for bootstrap ShowEditUser modal
+  // Button click handler for bootstrap EditUser modal
   const handleShowEditUser = () => setShowEditUser(true)
   const handleCloseEditUser = () => setShowEditUser(false)
+  // Button click handler for bootstrap DeleteUser modal
+  const handleShowDeleteUser = () => setShowDeleteUser(true)
+  const handleCloseDeleteUser = () => setShowDeleteUser(false)
 
   const renderUser = (
     <div>
@@ -63,9 +67,9 @@ export default function User() {
               </Button>
             </div>
             <div className="col-6 text-start">
-              <button type="button" className="btn btn-white" data-bs-toggle="modal" data-bs-target="#delete-user">
+              <Button variant="btn btn-white" onClick={handleShowDeleteUser}>
                 <i className="fa-solid fa-trash-can"></i>
-              </button>
+              </Button>
             </div>
           </div>
         )}
@@ -83,7 +87,7 @@ export default function User() {
         {/* Throws "component is changing a controlled input to be uncontrolled" error on inserting this component */}
         <EditUserModal user={loadedUser} showEditUser={showEditUser} onHide={handleCloseEditUser} />
 
-        <DeleteUserModal userId={userId} />
+        <DeleteUserModal userId={userId} showDeleteUser={showDeleteUser} onHide={handleCloseDeleteUser} />
 
         <CreateProfileModal />
       </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { updateProfileAPIData } from '../../services/profile.service'
-import SubmitRejectProfileButtons from '../partials/SubmitRejectProfileButtons'
+import SubmitRejectProfileButtons from '../partials/ProfileModalButtons'
 import ProfileFormFields from '../partials/ProfileFormFields'
 
 export default function EditProfileModal(props) {

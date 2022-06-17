@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useSelector } from 'react-redux'
 import { postProfileAPIData } from '../../services/profile.service'
-import SubmitRejectProfileButtons from '../partials/SubmitRejectProfileButtons'
+import SubmitRejectProfileButtons from '../partials/ProfileModalButtons'
 import ProfileFormFields from '../partials/ProfileFormFields'
 
 export default function CreateProfileModal() {

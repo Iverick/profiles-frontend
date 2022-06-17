@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { Modal, Button } from 'react-bootstrap'
 import { logout } from '../../slices/authSlice'
 import { destroyProfileAPI } from '../../services/user.service'
-import SubmitRejectProfileButtons from '../partials/SubmitRejectProfileButtons'
 
 export default function DeleteUserModal(props) {
 
@@ -51,26 +51,34 @@ export default function DeleteUserModal(props) {
   }
 
   return (
-    <div className="modal fade" id="delete-user" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="deleteUserLabel" aria-hidden="true">
-      <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content">
-          <div className="modal-body">
-
-            <div className="text-success" style={{ display: success ? '' : 'none' }}>
-              User account was deleted!
-            </div>
-
-            <div className="text-danger"
-              style={{ display: error ? '' : 'none' }}>
-              There were errors deleting this user
-            </div>
-
-            <div className="text-center my-4">Do you really want to remove this user?</div>
-
-            <SubmitRejectProfileButtons handleSubmit={handleSubmit} />
-          </div>
+    <Modal
+      show={props.showDeleteUser}
+      backdrop="static"
+      keyboard={false}
+      aria-labelledby="contained-modal-title-vcenter"
+      centered
+    >
+      <Modal.Body className="mx-5">
+        <div className="text-success" style={{ display: success ? '' : 'none' }}>
+          User account was deleted!
         </div>
-      </div>
-    </div>
+
+        <div className="text-danger"
+          style={{ display: error ? '' : 'none' }}>
+          There were errors deleting this user
+        </div>
+
+        <div className="text-center my-4">Do you really want to remove this user?</div>
+
+        <div className="mt-4 text-center">
+          <Button variant="btn btn-light" className="border-0 mx-4 px-4" onClick={handleSubmit}>
+            <i className="fa-solid fa-check"></i>
+          </Button>
+          <Button variant="btn btn-light" className="border-0 mx-4 px-4" id="close-modal" onClick={props.onHide}>
+            <i className="fa-solid fa-xmark"></i>
+          </Button>
+        </div>
+      </Modal.Body>
+    </Modal>
   )
 }
