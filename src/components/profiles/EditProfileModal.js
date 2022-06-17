@@ -29,13 +29,6 @@ export default function EditProfileModal(props) {
     setState(props.profileData)
   }, [props])
 
-  // let [formFieldsError, setFormFieldsError] = useState({
-  //   name: false,
-  //   birthday: false,
-  //   gender: false,
-  //   city: false
-  // })
-
   // Handles change of form fields values
   const handleChange = (e) => {
     const name = e.target.name

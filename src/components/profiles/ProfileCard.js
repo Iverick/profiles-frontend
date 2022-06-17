@@ -1,13 +1,7 @@
 import { useEffect, useState } from "react"
 import EditProfileModal from './EditProfileModal'
 import { destroyProfileAPI } from '../../services/profile.service'
-
-// Changes input date format
-const changeInputBirthdayFormat = (date) => {
-  const [year, month, day] = date.split('-')
-  const birthday = [day, month, year].join('.')
-  return birthday
-}
+import { changeInputBirthdayFormat } from '../../helpers/helpers'
 
 export default function ProfileCard(props) {
   // States for form fields

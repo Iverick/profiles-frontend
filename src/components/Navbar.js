@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import userpickImg from '../assets/images/userpick_img.png'
 import { logout } from '../slices/authSlice'
 
 export default function Navbar() {
@@ -40,7 +41,7 @@ export default function Navbar() {
           <Link to={"users/" + user.id} className="d-flex align-items-center text-dark text-decoration-none ms-3">
             {/* Userpick image */}
             <img
-              src={process.env.PUBLIC_URL+"userpick_img.png"}
+              src={userpickImg}
               alt=""
               className={userpickImgClasses.join(" ")}
               width="45"

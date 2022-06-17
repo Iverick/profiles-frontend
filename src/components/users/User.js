@@ -9,6 +9,7 @@ import DeleteUserModal from './DeleteUserModal'
 import { getUserAPIData } from '../../services/user.service'
 import AddProfileIconCard from '../profiles/AddProfileIconCard'
 import CreateProfileModal from '../profiles/CreateProfileModal'
+import { userStatus } from '../../helpers/helpers'
 
 export default function User() {
 
@@ -33,17 +34,6 @@ export default function User() {
     })
   }, [userId])
 
-  // Sets userStatus to admin to user based on state data
-  const userStatus = () => {
-    let userStatus
-    if (loadedUser.admin) {
-      userStatus = 'admin'
-    } else {
-      userStatus = 'user'
-    }
-    return userStatus
-  }
-
   // Button click handler for bootstrap EditUser modal
   const handleShowEditUser = () => setShowEditUser(true)
   const handleCloseEditUser = () => setShowEditUser(false)
@@ -56,7 +46,7 @@ export default function User() {
       <div className="text-center">
         <p className="fs-3">{loadedUser.username}</p>
         <p className="fs-4">{loadedUser.email}</p>
-        <p className="fs-5">{userStatus()}</p>
+        <p className="fs-5">{userStatus(loadedUser.admin)}</p>
 
         {/* Edit and Delete user icons */}
         {user.admin && (
