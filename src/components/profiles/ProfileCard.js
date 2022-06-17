@@ -24,7 +24,9 @@ export default function ProfileCard(props) {
   // Make a call to API endpoint to remove a profile with the specified ID
   // Reloads page on success
   const handleDelete = () => {
-    destroyProfileAPI(profile.id).then((res) => {
+    const profileId = profile.id
+
+    destroyProfileAPI(profileId).then((res) => {
       if (res.status === 204) {
         window.location.reload(false)
       } else {

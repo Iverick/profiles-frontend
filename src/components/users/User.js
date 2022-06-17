@@ -58,11 +58,9 @@ export default function User() {
         {isAdmin && (
           <div className="row">
             <div className="col-6 text-end">
-
               <Button variant="btn btn-white" onClick={handleShowEditUser}>
                 <i className="fa-solid fa-pencil"></i>
               </Button>
-
             </div>
             <div className="col-6 text-start">
               <button type="button" className="btn btn-white" data-bs-toggle="modal" data-bs-target="#delete-user">

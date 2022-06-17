@@ -1,10 +1,8 @@
 import { useEffect, useState } from "react"
 import { Modal, Button } from 'react-bootstrap'
 import { updateUserAPIData } from '../../services/user.service'
-import SubmitRejectProfileButtons from '../partials/SubmitRejectProfileButtons'
 
 export default function EditUserModal(props) {
-
   // States for form fields
   const [userId, setUserId] = useState('')
   const [email, setEmail] = useState('')
@@ -146,9 +144,9 @@ export default function EditUserModal(props) {
         </form>
 
         <div className="mt-4 text-center">
-          <button type="button" className="btn btn-light border-0 mx-4 px-4" onClick={handleSubmit}>
+          <Button variant="btn btn-light" className="border-0 mx-4 px-4" onClick={handleSubmit}>
             <i className="fa-solid fa-check"></i>
-          </button>
+          </Button>
           <Button variant="btn btn-light" className="border-0 mx-4 px-4" onClick={props.onHide}>
             <i className="fa-solid fa-xmark"></i>
           </Button>
