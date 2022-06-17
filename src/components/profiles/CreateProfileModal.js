@@ -4,7 +4,7 @@ import { postProfileAPIData } from '../../services/profile.service'
 import SubmitRejectProfileButtons from '../partials/SubmitRejectProfileButtons'
 import CreateEditProfileFormFields from '../partials/CreateEditProfileFormFields'
 
-export default function CreateProfileModal(props) {
+export default function CreateProfileModal() {
 
   const { user } = useSelector((state) => state.auth)
 
@@ -25,12 +25,8 @@ export default function CreateProfileModal(props) {
   useEffect(() => {
     // If userId was provided in props set it.
     // Otherwise assign it to the id of authenticated user.
-    if (props.userId) {
-      setUserId(props.userId.userId)
-    } else {
-      setUserId(user.id)
-    }
-  }, [props, user.id])
+    setUserId(user.id)
+  }, [user.id])
 
   // Handles change of form fields values
   const handleChange = (e) => {

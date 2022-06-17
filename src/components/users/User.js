@@ -12,11 +12,11 @@ import CreateProfileModal from '../profiles/CreateProfileModal'
 
 export default function User() {
 
-  const { isAdmin } = useSelector((state) => state.auth)
+  const { user, isAdmin } = useSelector((state) => state.auth)
 
   // Component states
   const userId = useParams()
-  const [user, setUser] = useState([])
+  const [loadedUser, setLoadedUser] = useState([])
   const [profiles, setProfiles] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
@@ -26,7 +26,7 @@ export default function User() {
   useEffect(() => {
     setIsLoading(true)
     getUserAPIData(userId.userId).then((data) => {
-      setUser(data)
+      setLoadedUser(data)
       setProfiles(data.profiles)
       setIsLoading(false)
     })
@@ -35,7 +35,7 @@ export default function User() {
   // Sets userStatus to admin to user based on state data
   const userStatus = () => {
     let userStatus
-    if (user.admin) {
+    if (loadedUser.admin) {
       userStatus = 'admin'
     } else {
       userStatus = 'user'
@@ -50,8 +50,8 @@ export default function User() {
   const renderUser = (
     <div>
       <div className="text-center">
-        <p className="fs-3">{user.username}</p>
-        <p className="fs-4">{user.email}</p>
+        <p className="fs-3">{loadedUser.username}</p>
+        <p className="fs-4">{loadedUser.email}</p>
         <p className="fs-5">{userStatus()}</p>
 
         {/* Edit and Delete user icons */}
@@ -78,14 +78,14 @@ export default function User() {
           return <ProfileCard profile={profile} key={i} />
         })}
 
-        <AddProfileIconCard />
+        { user.id === Number(userId.userId) && <AddProfileIconCard /> }
 
         {/* Throws "component is changing a controlled input to be uncontrolled" error on inserting this component */}
         <EditUserModal user={user} showEditUser={showEditUser} onHide={handleCloseEditUser} />
 
         <DeleteUserModal userId={userId} />
 
-        <CreateProfileModal userId={userId} />
+        <CreateProfileModal />
       </div>
     </div>
   )

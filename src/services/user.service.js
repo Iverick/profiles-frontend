@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { API_URL } from '../constants/app-constants'
 
-// Connecting to API /users/:id endpoint to extract the list of users
+// Connecting to API /users endpoint to extract the list of users
 const getUsersAPIData = async() => {
   return await axios.get(API_URL + "users").then((res) => res.data)
 }
