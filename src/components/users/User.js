@@ -1,4 +1,4 @@
-import { React, useEffect, useState } from 'react'
+import { React, useEffect, useState, useCallback } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Button } from 'react-bootstrap'
@@ -7,6 +7,7 @@ import Spinner from '../Spinner'
 import EditUserModal from './EditUserModal'
 import DeleteUserModal from './DeleteUserModal'
 import { getUserAPIData } from '../../services/user.service'
+import { destroyProfileAPI } from '../../services/profile.service'
 import AddProfileIconCard from '../profiles/AddProfileIconCard'
 import CreateProfileModal from '../profiles/CreateProfileModal'
 import { userStatus } from '../../helpers/helpers'
@@ -14,7 +15,9 @@ import { userStatus } from '../../helpers/helpers'
 export default function User() {
 
   const { user } = useSelector((state) => state.auth)
-
+  // Mimics forceUpdate()
+  const [, updateState] = useState()
+  const forceUpdate = useCallback(() => updateState({}), [])
   // Component states
   const userId = useParams()
   const [loadedUser, setLoadedUser] = useState([])
@@ -40,6 +43,26 @@ export default function User() {
   // Button click handler for bootstrap DeleteUser modal
   const handleShowDeleteUser = () => setShowDeleteUser(true)
   const handleCloseDeleteUser = () => setShowDeleteUser(false)
+
+  // Handles on delete profile event.
+  // Makes a call to API endpoint to remove a profile with the specified ID 
+  // and removes this profile from the local state.
+  // Rerenders on success
+  const handleDelete = (e, profileId) => {
+    destroyProfileAPI(profileId).then((res) => {
+      if (res.status === 204) {
+        profiles.forEach((profile, i) => {
+          if (profile.id === profileId) {
+            profiles.splice(i, 1)
+          }
+        })
+        setProfiles(profiles)
+        forceUpdate()
+      } else {
+        console.log(res)
+      }
+    })
+  }
 
   const renderUser = (
     <div>
@@ -69,7 +92,7 @@ export default function User() {
 
       <div className="row gx-5 py-3">
         {profiles.map((profile, i) => {
-          return <ProfileCard profile={profile} key={i} />
+          return <ProfileCard profile={profile} key={i} onDeleteProfile={handleDelete} />
         })}
 
         {user.id === Number(userId.userId) && <AddProfileIconCard />}
