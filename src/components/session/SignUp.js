@@ -1,6 +1,6 @@
 import { React, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useNavigate  } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { register } from '../../slices/authSlice'
 
 export default function SignUp() {
@@ -58,57 +58,63 @@ export default function SignUp() {
   return (
     <div className="row text-center">
       <div className="col-4 offset-4">
-      <main className="form-signin w-100 m-auto">
-        <form>
-          <h1 className="h2 mb-3 fw-normal">Create your account</h1>
+        <main className="form-signin w-100 m-auto">
+          <form>
+            <h1 className="h2 mb-3 fw-normal">Create your account</h1>
 
-          <div className="text-danger"
-               style={{ display: error ? '' : 'none'}}>
-            There were errors while registering your account
-          </div>
+            <div className="text-danger"
+                style={{ display: error ? '' : 'none'}}>
+              There were errors while registering your account
+            </div>
 
-          <div className="form-floating my-4">
-            <input 
-              type="text" 
-              className="form-control border-0" 
-              id="usernameField" 
-              value={ username }
-              onChange={ handleUsername } />
-            <label htmlFor="usernameField">Username</label>
-          </div>
+            <div className="form-floating my-4">
+              <input
+                type="text"
+                className="form-control border-0"
+                id="usernameField"
+                value={ username }
+                onChange={ handleUsername } />
+              <label htmlFor="usernameField">Username</label>
+            </div>
 
-          <div className="form-floating my-4">
-            <input 
-              type="email" 
-              className="form-control border-0" 
-              id="emailField"
-              value={ email }
-              onChange={ handleEmail } />
-            <label htmlFor="emailField">Email address</label>
-          </div>
+            <div className="form-floating my-4">
+              <input
+                type="email"
+                className="form-control border-0"
+                id="emailField"
+                value={ email }
+                onChange={ handleEmail } />
+              <label htmlFor="emailField">Email address</label>
+            </div>
 
-          <div className="form-floating my-4">
-            <input 
-              type="password" 
-              className="form-control border-0" 
-              id="passwordField" 
-              value={ password }
-              onChange={ handlePassword } />
-            <label htmlFor="passwordField">Password</label>
-          </div>
+            <div className="form-floating my-4">
+              <input
+                type="password"
+                className="form-control border-0"
+                id="passwordField"
+                value={ password }
+                onChange={ handlePassword } />
+              <label htmlFor="passwordField">Password</label>
+            </div>
 
-          <div className="checkbox my-4">
-            <label>
-              <input type="checkbox" checked={ admin } onChange={ handleAdmin } /> 
-              <span className="text-muted ms-2">Admin</span>
-            </label>
-          </div>
+            <div className="checkbox my-4">
+              <label>
+                <input type="checkbox" checked={ admin } onChange={ handleAdmin } /> 
+                <span className="text-muted ms-2">Admin</span>
+              </label>
+            </div>
 
-          <button onClick={ handleSubmit } className="w-100 btn btn-lg btn-outline-secondary border-0" type="submit">
-            Sign Up
-          </button>
-        </form>
-      </main>
+            <button onClick={ handleSubmit } className="w-100 btn btn-lg btn-outline-secondary border-0" type="submit">
+              Sign Up
+            </button>
+          </form>
+        </main>
+
+        <div className="mt-3">
+          <small >
+            <Link to="/signin" className="text-muted text-decoration-none">Or click here to login</Link>
+          </small>
+        </div>
       </div>
     </div>
   )

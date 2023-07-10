@@ -6,7 +6,7 @@ import Navbar from './components/Navbar'
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="pt-3 px-5 bg-light bg-gradient">
+      <div className="min-vh-100 pt-3 px-5 bg-light bg-gradient">
         <header>
           <Navbar />
         </header>
