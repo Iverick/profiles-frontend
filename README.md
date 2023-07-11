@@ -1,70 +1,29 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Frontend part of the Profiles app, developed using React framework. See a server API [in this repo](https://github.com/Iverick/profiles-api.git).
 
-## Available Scripts
+## Run application
 
-In the project directory, you can run:
+Install and configure an API app to be able to fetch data from the server
 
-### `npm start`
+Clone this repo on your local machine
 
-Runs the app in the development mode.\
+`git clone https://github.com/Iverick/profiles-frontend.git`
+
+Install dependencies
+
+`yarn install`
+
+Start dev server
+
+`yarn start`
+
 Open [http://localhost:3001](http://localhost:3001) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Screenshots
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![Screenshot from 2023-07-10 18-01-26](https://github.com/Iverick/profiles-frontend/assets/29335101/0bfc8487-3f17-45be-a41f-2b8baf856998)
+![Screenshot from 2023-07-10 18-01-34](https://github.com/Iverick/profiles-frontend/assets/29335101/e1559817-b895-4cea-97f6-4af43e158420)
+![Screenshot from 2023-07-10 18-01-38](https://github.com/Iverick/profiles-frontend/assets/29335101/dd4d2990-049d-4eae-ae7e-41ae49cc6fb9)
+![Screenshot from 2023-07-10 18-01-43](https://github.com/Iverick/profiles-frontend/assets/29335101/fb3d821f-fd29-45dd-8198-0449f0cc96a2)
+![Screenshot from 2023-07-10 18-13-51](https://github.com/Iverick/profiles-frontend/assets/29335101/e6044170-f513-4b5c-a86b-e6486e5030e5)
